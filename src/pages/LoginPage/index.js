@@ -6,7 +6,7 @@ export const LoginPage = () => {
   return (
     <>
       <div className="background">
-        <div className="logo">
+        <div className="logo shadow-lg">
           <h1 className="text-4xl font-bold text-center">
             <a href="/" className="text-green-600">
               i
@@ -14,15 +14,33 @@ export const LoginPage = () => {
             Banking
           </h1>
         </div>
-        <div className="form-login p-5 w-3/12 ml-6/12 bg-white rounded-lg">
-          <p className="font-bold">Username</p>
-          <input type="text" class="form-input px-4 py-2 w-full rounded-md" />
+        <div className="login-form shadow-lg p-5 w-3/12 ml-6/12 bg-white rounded-lg">
+          <label className="font-bold text-4xl mb-3 text-green-500">
+            Log In
+          </label>
+          <label
+            for="username"
+            className="block mt-3 text-gray-700 text-md font-bold mb-2"
+          >
+            Username
+          </label>
+          <input
+            placeholder="your username"
+            type="text"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+          />
           <p></p>
           <br />
-          <p className="font-bold">Password</p>
+          <label
+            for="password"
+            className="block text-gray-700 text-md font-bold mb-2"
+          >
+            Password
+          </label>
           <input
-            type="password"
-            class="form-input px-4 py-2 w-full rounded-md"
+            placeholder="your password"
+            type="text"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
           />
           <p></p>
           <br />
@@ -39,12 +57,19 @@ export const LoginPage = () => {
           </p>
           <br />
           <Link to="/transaction">
-            <button className="bg-green-400 px-6 p-2 rounded-md text-green-900 text-bold">
+            <button
+              type="button"
+              className="bg-green-400 hover:bg-green-300 w-full px-6 p-2 rounded-md text-white font-bold"
+            >
               {" "}
               Log In{" "}
             </button>
           </Link>
         </div>
+        <p className="text-green-500 italic text-center font-bold mt-60">
+          {" "}
+          &copy; DMT Team
+        </p>
       </div>
     </>
   );
