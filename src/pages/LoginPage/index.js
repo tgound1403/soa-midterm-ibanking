@@ -14,7 +14,7 @@ export const LoginPage = () => {
             Banking
           </h1>
         </div>
-        <div className="form p-5 w-3/12 ml-6/12 bg-white rounded-lg">
+        <div className="form-login p-5 w-3/12 ml-6/12 bg-white rounded-lg">
           <p className="font-bold">Username</p>
           <input type="text" class="form-input px-4 py-2 w-full rounded-md" />
           <p></p>

@@ -12,7 +12,7 @@ export const TransactionForm = () => {
             Banking
           </h1>
         </div>
-        <div className="form p-5 w-4/12 ml-6/12 bg-white rounded-lg">
+        <div className="transaction-form p-5 w-4/12 ml-6/12 bg-white rounded-lg">
           <p className="text-3xl font-bold text-green-600">Sender</p>
           <p className="italic">Fullname</p>
           <input type="text" class="form-input px-4 py-2 w-full rounded-md" />
