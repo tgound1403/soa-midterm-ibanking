@@ -1,5 +1,7 @@
 import React from "react";
 import "./index.css";
+import { LockClosedIcon } from "@heroicons/react/20/solid";
+
 export const TransactionForm = () => {
   return (
     <>
@@ -12,92 +14,122 @@ export const TransactionForm = () => {
             Banking
           </h1>
         </div>
-        <div className="transaction-form shadow-lg p-5 w-4/12 ml-6/12 bg-white rounded-lg">
-          <label className="text-3xl font-bold text-green-600">Sender</label>
+        <form className="transaction-form shadow-lg p-5 w-4/12 ml-6/12 bg-white rounded-lg">
+          <label className="text-3xl font-bold text-green-500">Sender</label>
           <label className="italic block text-gray-700 text-md  mb-1">
             Fullname
           </label>
           <input
+            required
             type="text"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            placeholder="Trinh Cam Minh"
           />
           <label className="italic block text-gray-700 text-md  mb-1">
             Phone number
           </label>
           <input
+            required
             type="text"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            placeholder="0123456789"
           />
           <label className="italic block text-gray-700 text-md  mb-1">
             Email
           </label>
           <input
+            required
             type="text"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            placeholder="minh123@gmail.com"
           />
           <p></p>
           <br />
-          <label className="text-3xl text-green-600 font-bold">
+          <label className="text-3xl text-green-500 font-bold">
             Tuition Info
           </label>
           <label className="italic block text-gray-700 text-md  mb-1">
             Student ID
           </label>
           <input
+            required
             type="text"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            placeholder="520H0621"
           />
           <label className="italic block text-gray-700 text-md  mb-1">
             Student full name
           </label>
           <input
+            required
             type="text"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            placeholder="Nguyen Trieu Duong"
           />
           <label className="italic block text-gray-700 text-md  mb-1">
-            Amount
+            Amount (VND)
           </label>
           <input
+            required
             type="text"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            placeholder="23.000.000"
           />
           <p></p>
           <br />
-          <label className="text-3xl  text-green-600 font-bold">
+          <label className="text-3xl  text-green-500 font-bold">
             Transaction Info
           </label>
           <label className="italic block text-gray-700 text-md mb-1">
-            Sender balance
+            Sender balance (VND)
           </label>
           <input
+            required
             type="text"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            placeholder="100.000.000"
           />
           <label className="italic block text-gray-700 text-md mb-1">
-            Tuition required
+            Tuition required (VND)
           </label>
           <input
+            required
             type="password"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            placeholder="23.000.000"
           />
           <p>
             <input type="checkbox" class="rounded text-blue-500" /> I accept
             with{" "}
-            <a href="/" className="font-bold italic text-green-600">
+            <a href="/" className="font-bold italic text-green-500">
               term of uses
             </a>
             <a href="/"> and </a>
-            <a href="/" className="font-bold italic text-green-600">
+            <a href="/" className="font-bold italic text-green-500">
               policy
             </a>
           </p>
           <p></p>
           <br />
-          <button className="confirm-btn hover:bg-green-300 w-full bg-green-400 px-6 p-2 rounded-md text-white font-bold">
-            {" "}
-            Send{" "}
-          </button>
-        </div>
+          <div>
+            <button
+              type="submit"
+              className="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                <LockClosedIcon
+                  className="h-5 w-5 text-green-500 group-hover:text-green-400"
+                  aria-hidden="true"
+                />
+              </span>
+              Send
+            </button>
+          </div>
+        </form>
+        <p className="text-green-500 italic text-center font-bold mt-2 ">
+          {" "}
+          &copy; DMT Team
+        </p>
       </div>
     </>
   );
