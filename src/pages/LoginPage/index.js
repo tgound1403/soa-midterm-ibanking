@@ -6,7 +6,7 @@ export const LoginPage = () => {
   return (
     <>
       <div className="background">
-        <div className="logo shadow-lg">
+        <div className="logo bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
           <h1 className="text-4xl font-bold text-center">
             <a href="/" className="text-green-600">
               i
@@ -14,13 +14,13 @@ export const LoginPage = () => {
             Banking
           </h1>
         </div>
-        <form className="login-form shadow-lg p-5 w-3/12 ml-6/12 bg-white rounded-lg">
+        <form className="login-form sm:w-full md:w-6/12 lg:w-3/12 shadow-lg p-5 ml-6/12 bg-white rounded-lg">
           <label className="font-bold text-4xl mb-3 text-green-500">
             Log In
           </label>
           <label
             for="username"
-            className="block mt-3 text-gray-700 text-md font-bold mb-2"
+            className="block mt-3 text-gray-700 text-md font-bold mb-1"
           >
             Username
           </label>
@@ -28,13 +28,11 @@ export const LoginPage = () => {
             required
             placeholder="your username"
             type="text"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            className="shadow mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
           />
-          <p></p>
-          <br />
           <label
             for="password"
-            className="block text-gray-700 text-md font-bold mb-2"
+            className="block text-gray-700 text-md font-bold mb-1"
           >
             Password
           </label>
@@ -42,10 +40,8 @@ export const LoginPage = () => {
             required
             placeholder="your password"
             type="text"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            className="shadow mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
           />
-          <p></p>
-          <br />
           <p>
             <input required type="checkbox" class="rounded text-blue-500" /> I
             accept with{" "}
