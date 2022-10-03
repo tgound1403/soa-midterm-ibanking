@@ -1,20 +1,19 @@
 import React from "react";
-import "./index.css";
 import { Link } from "react-router-dom";
 
 export const LoginPage = () => {
   return (
     <>
-      <div className="background">
-        <div className="logo bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
-          <h1 className="text-4xl font-bold text-center">
+      <div className="background lg:h-full h-screen bg-gradient-to-r from-yellow-300 to-green-400">
+        <div className=" px-2 py-6 my-0 mx-auto w-11/12 rounded-b-lg bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
+          <h1 className="text-4xl  font-bold text-center">
             <a href="/" className="text-green-600">
               i
             </a>
             Banking
           </h1>
         </div>
-        <form className="login-form sm:w-full md:w-6/12 lg:w-3/12 shadow-lg p-5 ml-6/12 bg-white rounded-lg">
+        <form className="login-form my-0 mx-auto lg:mb-56 xl:mt-64 xl:mb-64 mt-12 mb-6 w-11/12 sm:mt-64 sm:mb-40 md:mb-72 lg:mt-20 md:mt-64 sm:w-11/12 md:w-6/12 lg:w-3/12 shadow-lg p-5 ml-6/12 bg-white rounded-lg">
           <label className="font-bold text-4xl mb-3 text-green-500">
             Log In
           </label>
@@ -28,7 +27,7 @@ export const LoginPage = () => {
             required
             placeholder="your username"
             type="text"
-            className="shadow mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            className="peer shadow mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
           />
           <label
             for="password"
@@ -40,8 +39,29 @@ export const LoginPage = () => {
             required
             placeholder="your password"
             type="text"
-            className="shadow mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
+            className="peer shadow mb-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
           />
+          <div
+            class="peer-invalid:visible flex bg-red-100 rounded-lg p-3 mb-4 mt-4 text-md text-red-700"
+            role="alert"
+          >
+            <svg
+              class="w-5 h-5 inline mr-3"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <div>
+              <span class="font-medium">Error!</span> Username or password
+              invalid
+            </div>
+          </div>
           <p>
             <input required type="checkbox" class="rounded text-blue-500" /> I
             accept with{" "}
@@ -53,7 +73,6 @@ export const LoginPage = () => {
               policy
             </a>
           </p>
-          {/* <p class="text-red-500 text-sm italic">Please fill out this field.</p> */}
 
           <br />
           <Link to="/transaction">
@@ -66,7 +85,7 @@ export const LoginPage = () => {
             </button>
           </Link>
         </form>
-        <p className="text-green-500 italic text-center font-bold mt-60">
+        <p className="text-green-500 italic text-center font-bold">
           {" "}
           &copy; DMT Team
         </p>
