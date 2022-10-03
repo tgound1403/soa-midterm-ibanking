@@ -3,19 +3,9 @@
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "ticon.com%2Ffree-icon%2Finternet-banking_2288966&psig=AOvVaw2YUW1D09jIrnkf4M5x-PLj&ust=1664786491628000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOj6yJKTwfoCFQAAAAAdAAAAABAD",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",
