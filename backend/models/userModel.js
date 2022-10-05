@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
     {
-        name: {
+        additionalName: {
             type: String,
             required: true,
         },
@@ -14,13 +14,18 @@ const userSchema = new Schema(
         email: {
             type: String,
             required: true,
+            unique: true,
         },
-        phone: {
+        telephone: {
             type: Number,
             required: true,
             unique: true,
         },
         balance: {
+            type: Number,
+            required: true,
+        },
+        amount: {
             type: Number,
             required: true,
         },
