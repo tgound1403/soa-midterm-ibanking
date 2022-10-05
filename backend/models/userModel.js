@@ -52,7 +52,7 @@ userSchema.statics.signup = async (additionalName, password, email, telephone, b
 
     //check if username is existed or not
     if (exist) {
-        throw Error('username already in use');
+        throw Error('Username already in use');
     }
 
     //encrypted password
@@ -62,6 +62,23 @@ userSchema.statics.signup = async (additionalName, password, email, telephone, b
     //create token
 
     const user = await userSchema.create({ additionalName, password: hash, email, telephone, balance, amount });
+    return user;
+};
+
+userSchema.statics.login = async (additionalName, password) => {
+    if (!additionalName || !password) {
+        throw Error('All fill must be filled');
+    }
+
+    const user = mongoose.findOne({ additionalName });
+    if (!user) {
+        throw Error('Invalid username');
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+        throw Error('Incorrect password');
+    }
     return user;
 };
 

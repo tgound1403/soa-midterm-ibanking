@@ -18,8 +18,15 @@ const signupUser = async (req, res) => {
     }
 };
 
-const loginUser = (req, res) => {
-    res.json({ message: 'login page' });
+const loginUser = async (req, res) => {
+    const { additionalName, password } = req.body;
+    try {
+        const user = await User.login(additionalName, password);
+        const token = await createToken(user._id);
+        res.status(200).json(user, token);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 module.exports = { loginUser, signupUser };
