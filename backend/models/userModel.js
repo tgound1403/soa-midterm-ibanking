@@ -36,9 +36,8 @@ const userSchema = new Schema(
     { timestamps: true }
 );
 
-userSchema.statics.signup = async (additionalName, password, email, telephone, balance, amount) => {
-    const exist = mongoose.findOne({ additionalName });
-    if (!additionalName || !password || !email || !telephone || !telephone || !!balance || !amount) {
+userSchema.statics.signup = async function (additionalName, password, email, telephone, balance, amount) {
+    if (!additionalName || !password || !email || !telephone || !balance || !amount) {
         throw Error('All fill must be filled');
     }
 
@@ -50,6 +49,9 @@ userSchema.statics.signup = async (additionalName, password, email, telephone, b
         throw Error('Password not strong enough');
     }
 
+    //add user to database
+    const exist = await this.findOne({ additionalName });
+
     //check if username is existed or not
     if (exist) {
         throw Error('Username already in use');
@@ -59,18 +61,16 @@ userSchema.statics.signup = async (additionalName, password, email, telephone, b
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
-    //create token
-
-    const user = await userSchema.create({ additionalName, password: hash, email, telephone, balance, amount });
+    const user = await this.create({ additionalName, password: hash, email, telephone, balance, amount });
     return user;
 };
 
-userSchema.statics.login = async (additionalName, password) => {
+userSchema.statics.login = async function (additionalName, password) {
     if (!additionalName || !password) {
         throw Error('All fill must be filled');
     }
 
-    const user = mongoose.findOne({ additionalName });
+    const user = await this.findOne({ additionalName });
     if (!user) {
         throw Error('Invalid username');
     }
