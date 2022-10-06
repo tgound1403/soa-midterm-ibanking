@@ -1,7 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     return (
         <>
             <div className='background lg:h-full h-screen bg-gradient-to-r from-yellow-300 to-green-400'>
@@ -20,26 +22,35 @@ export const LoginPage = () => {
                     </label>
                     <input
                         required
-                        placeholder='your username'
+                        placeholder='username'
                         type='text'
                         className='peer shadow mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                        }}
+                        value={username}
                     />
                     <label htmlFor='password' className='block text-gray-700 text-md font-bold mb-1'>
                         Password
                     </label>
                     <input
                         required
-                        placeholder='your password'
+                        placeholder='password'
                         type='text'
                         className='peer shadow mb-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }}
+                        value={password}
                     />
-                    <div
+                    {/* validator section (TGround)  */}
+                    {/* <div
                         className='peer-invalid:visible flex bg-red-100 rounded-lg p-3 mb-4 mt-4 text-md text-red-700'
                         role='alert'
                     >
                         <svg
                             className='w-5 h-5 inline mr-3'
-                            fill='currentColor'
+                            fillRule='currentColor'
                             viewBox='0 0 20 20'
                             xmlns='http://www.w3.org/2000/svg'
                         >
@@ -52,7 +63,7 @@ export const LoginPage = () => {
                         <div>
                             <span className='font-medium'>Error!</span> Username or password invalid
                         </div>
-                    </div>
+                    </div> */}
                     <p>
                         <input required type='checkbox' className='rounded text-blue-500' /> I accept with{' '}
                         <a href='/' className='font-bold italic text-green-500'>

@@ -2,6 +2,9 @@ import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 
 export const TransactionForm = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
     return (
         <>
             <div className='background lg:h-full h-screen'>
@@ -13,7 +16,10 @@ export const TransactionForm = () => {
                         Banking
                     </h1>
                 </div>
-                <form className='transaction-form w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 lg:w-4/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg'>
+                <form
+                    onSubmit={handleSubmit}
+                    className='transaction-form w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 lg:w-4/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg'
+                >
                     <label className='text-3xl font-bold text-green-500'>Sender</label>
                     <label className='italic block text-gray-700 text-md  mb-1'>Fullname</label>
                     <input
@@ -22,7 +28,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        placeholder='Trinh Cam Minh'
+                        value={'Trinh Cam Minh'}
                     />
                     <label className='italic block text-gray-700 text-md  mb-1'>Phone number</label>
                     <input
@@ -31,7 +37,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        placeholder='0123456789'
+                        value={'0907722143'}
                     />
                     <label className='italic block text-gray-700 text-md  mb-1'>Email</label>
                     <input
@@ -40,7 +46,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        placeholder='minh123@gmail.com'
+                        value={'trinhcamminh25112002@gmail.com'}
                     />
                     <p></p>
                     <br />
@@ -49,28 +55,29 @@ export const TransactionForm = () => {
                         Student ID
                     </label>
                     <input
+                        disabled
                         required
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        placeholder='520H0621'
+                        value={'520H0659'}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
                         Student full name
                     </label>
                     <input
-                        required
+                        disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        placeholder='Nguyen Trieu Duong'
+                        value={'Trinh Cam Minh'}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
                         Amount (VND)
                     </label>
                     <input
-                        required
+                        disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        placeholder='23.000.000'
+                        value={'23.000.000'}
                     />
                     <p></p>
                     <br />
@@ -79,19 +86,19 @@ export const TransactionForm = () => {
                         Sender balance (VND)
                     </label>
                     <input
-                        required
+                        disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        placeholder='100.000.000'
+                        value={'30.000.000'}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md mb-1">
                         Tuition required (VND)
                     </label>
                     <input
-                        required
-                        type='password'
+                        disabled
+                        type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        placeholder='23.000.000'
+                        value={'23.000.000'}
                     />
                     <p>
                         <input type='checkbox' className='rounded text-blue-500' /> I accept with{' '}
