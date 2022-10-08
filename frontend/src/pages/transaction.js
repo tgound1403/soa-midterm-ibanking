@@ -24,7 +24,6 @@ export const TransactionForm = () => {
                     <label className='italic block text-gray-700 text-md  mb-1'>Fullname</label>
                     <input
                         disabled
-                        autoComplete='fullname'
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
@@ -33,7 +32,6 @@ export const TransactionForm = () => {
                     <label className='italic block text-gray-700 text-md  mb-1'>Phone number</label>
                     <input
                         disabled
-                        autoComplete='phoneNum'
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
@@ -42,7 +40,6 @@ export const TransactionForm = () => {
                     <label className='italic block text-gray-700 text-md  mb-1'>Email</label>
                     <input
                         disabled
-                        autoComplete='email'
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
@@ -62,7 +59,7 @@ export const TransactionForm = () => {
                         value={'520H0659'}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
-                        Student full name
+                        Student Fullname
                     </label>
                     <input
                         disabled
