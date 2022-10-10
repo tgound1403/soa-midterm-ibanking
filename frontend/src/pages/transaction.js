@@ -1,10 +1,14 @@
 import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
+import { useAuthContext } from '../hooks/useAuthContext';
+const formatCurrency = require('format-currency');
 
 export const TransactionForm = () => {
+    const { user } = useAuthContext();
     const handleSubmit = (e) => {
         e.preventDefault();
     };
+
     return (
         <>
             <div className='background lg:h-full h-screen'>
@@ -27,7 +31,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={'Trinh Cam Minh'}
+                        value={user.additionalName}
                     />
                     <label className='italic block text-gray-700 text-md  mb-1'>Phone number</label>
                     <input
@@ -35,7 +39,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={'0907722143'}
+                        value={user.telephone}
                     />
                     <label className='italic block text-gray-700 text-md  mb-1'>Email</label>
                     <input
@@ -43,7 +47,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={'trinhcamminh25112002@gmail.com'}
+                        value={user.email}
                     />
                     <p></p>
                     <br />
@@ -56,7 +60,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={'520H0659'}
+                        value={user.password}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
                         Student Fullname
@@ -65,7 +69,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={'Trinh Cam Minh'}
+                        value={user.additionalName}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
                         Amount (VND)
@@ -74,7 +78,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={'23.000.000'}
+                        value={formatCurrency(user.amount)}
                     />
                     <p></p>
                     <br />
@@ -86,7 +90,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={'30.000.000'}
+                        value={formatCurrency(user.balance)}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md mb-1">
                         Tuition required (VND)
@@ -95,7 +99,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={'23.000.000'}
+                        value={formatCurrency(user.amount)}
                     />
                     <p>
                         <input type='checkbox' className='rounded text-blue-500' /> I accept with{' '}

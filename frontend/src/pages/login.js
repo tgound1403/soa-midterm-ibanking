@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useLogin } from '../hooks/useLogin';
-import { useAuthContext } from '../hooks/useAuthContext';
+
 export const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { login, error } = useLogin();
-    const { user } = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +27,6 @@ export const LoginPage = () => {
                     className='login-form my-0 mx-auto lg:mb-56 xl:mt-64 xl:mb-64 mt-12 mb-6 w-11/12 sm:mt-64 sm:mb-40 md:mb-72 lg:mt-20 md:mt-64 sm:w-11/12 md:w-6/12 lg:w-3/12 shadow-lg p-5 ml-6/12 bg-white rounded-lg'
                 >
                     <label className='font-bold text-4xl mb-3 text-green-500'>Log In</label>
-                    {user ? <div>Hello {user.email}</div> : <div>Hi there</div>}
                     <label htmlFor='username' className='block mt-3 text-gray-700 text-md font-bold mb-1'>
                         Username
                     </label>
