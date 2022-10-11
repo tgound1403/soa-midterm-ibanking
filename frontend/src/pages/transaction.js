@@ -1,12 +1,22 @@
 import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
 const formatCurrency = require('format-currency');
 
 export const TransactionForm = () => {
     const { user } = useAuthContext();
+    //destructuring all the properties from user object
+    const { additionalName, StudentID, email, telephone, balance, amount } = user;
+    const { logout } = useLogout();
+
     const handleSubmit = (e) => {
         e.preventDefault();
+    };
+
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        await logout();
     };
 
     return (
@@ -31,7 +41,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={user.additionalName}
+                        value={additionalName}
                     />
                     <label className='italic block text-gray-700 text-md  mb-1'>Phone number</label>
                     <input
@@ -39,7 +49,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={user.telephone}
+                        value={telephone}
                     />
                     <label className='italic block text-gray-700 text-md  mb-1'>Email</label>
                     <input
@@ -47,7 +57,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={user.email}
+                        value={email}
                     />
                     <p></p>
                     <br />
@@ -60,7 +70,7 @@ export const TransactionForm = () => {
                         required
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={user.password}
+                        value={StudentID}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
                         Student Fullname
@@ -69,7 +79,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={user.additionalName}
+                        value={additionalName}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
                         Amount (VND)
@@ -78,7 +88,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={formatCurrency(user.amount)}
+                        value={formatCurrency(amount)}
                     />
                     <p></p>
                     <br />
@@ -90,7 +100,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={formatCurrency(user.balance)}
+                        value={formatCurrency(balance)}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md mb-1">
                         Tuition required (VND)
@@ -99,7 +109,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={formatCurrency(user.amount)}
+                        value={formatCurrency(amount)}
                     />
                     <p>
                         <input type='checkbox' className='rounded text-blue-500' /> I accept with{' '}
@@ -125,6 +135,15 @@ export const TransactionForm = () => {
                                 />
                             </span>
                             Send
+                        </button>
+                        <br />
+                        <button
+                            onClick={handleLogout}
+                            type='submit'
+                            className='bg-green-600 hover:bg-green-400 w-full px-6 p-2 rounded-md text-white font-bold'
+                        >
+                            {' '}
+                            Log Out{' '}
                         </button>
                     </div>
                 </form>

@@ -7,10 +7,10 @@ const createToken = (_id) => {
 };
 
 const signupUser = async (req, res) => {
-    const { additionalName, password, email, telephone, balance, amount } = req.body;
+    const { additionalName, password, StudentID, email, telephone, balance, amount } = req.body;
 
     try {
-        const user = await User.signup(additionalName, password, email, telephone, balance, amount);
+        const user = await User.signup(additionalName, password, StudentID, email, telephone, balance, amount);
         const token = await createToken(user._id);
         res.status(200).json({ user, token });
     } catch (error) {
@@ -27,6 +27,7 @@ const loginUser = async (req, res) => {
             additionalName: user.additionalName,
             password: user.password,
             email: user.email,
+            StudentID: user.StudentID,
             telephone: user.telephone,
             balance: user.balance,
             amount: user.amount,

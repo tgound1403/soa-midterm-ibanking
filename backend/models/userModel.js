@@ -14,6 +14,11 @@ const userSchema = new Schema(
             type: String,
             require: true,
         },
+        StudentID: {
+            type: String,
+            require: true,
+            unique: true,
+        },
         email: {
             type: String,
             required: true,
@@ -36,8 +41,8 @@ const userSchema = new Schema(
     { timestamps: true }
 );
 
-userSchema.statics.signup = async function (additionalName, password, email, telephone, balance, amount) {
-    if (!additionalName || !password || !email || !telephone || !balance || !amount) {
+userSchema.statics.signup = async function (additionalName, password, StudentID, email, telephone, balance, amount) {
+    if (!additionalName || !password || !StudentID || !email || !telephone || !balance || !amount) {
         throw Error('All fill must be filled');
     }
 
@@ -61,7 +66,7 @@ userSchema.statics.signup = async function (additionalName, password, email, tel
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
-    const user = await this.create({ additionalName, password: hash, email, telephone, balance, amount });
+    const user = await this.create({ additionalName, password: hash, StudentID, email, telephone, balance, amount });
     return user;
 };
 
