@@ -13,9 +13,9 @@ const postHistoryTransaction = async (req, res) => {
 
 //get a specific user history, note that this 'id' object is defined in routes
 const getHistoryTransaction = async (req, res) => {
-    const { id } = req.params;
+    const { StudentID } = req.params;
     try {
-        const data = await HistoryTransaction.getUserHistoryTransaction(id);
+        const data = await HistoryTransaction.getUserHistoryTransaction(StudentID);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json({ error: error.message });

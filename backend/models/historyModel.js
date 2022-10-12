@@ -45,12 +45,12 @@ historySchema.statics.appendData = async function (userID, additionalName, Stude
     return data;
 };
 
-historySchema.statics.getUserHistoryTransaction = async function (userID) {
-    if (!userID) {
-        throw Error('URL must has at least one userID');
+historySchema.statics.getUserHistoryTransaction = async function (StudentID) {
+    if (!StudentID) {
+        throw Error('URL must has one userID params');
     }
 
-    const exist = await User.findById(userID);
+    const exist = await this.findOne({ StudentID });
     if (!exist) {
         throw Error('Invalid userID');
     }
