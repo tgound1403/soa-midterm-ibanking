@@ -82,7 +82,7 @@ export const TransactionForm = () => {
                         value={additionalName}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
-                        Amount (VND)
+                        Tuition required (VND)
                     </label>
                     <input
                         disabled
