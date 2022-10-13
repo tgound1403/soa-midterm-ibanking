@@ -25,7 +25,7 @@ export const TransactionForm = () => {
         const fetchHistory = async () => {
             const response = await fetch(`/api/history/${StudentID}`);
             const json = await response.json();
-            setHistory(json.createdAt);
+            setHistory(json);
         };
         fetchHistory();
     }, [StudentID]);
@@ -45,7 +45,10 @@ export const TransactionForm = () => {
                     onSubmit={handleSubmit}
                     className='transaction-form w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 lg:w-4/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg'
                 >
-                    {history && <h1>History: {new Date(history).toLocaleString('vi-vn')}</h1>}
+                    {history &&
+                        history.map((item, index) => {
+                            return <h1 key={index}>History: {new Date(item.createdAt).toLocaleString('vi-vn')}</h1>;
+                        })}
                     <label className='text-3xl font-bold text-green-500'>Sender</label>
                     <label className='italic block text-gray-700 text-md  mb-1'>Fullname</label>
                     <input
