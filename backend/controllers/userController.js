@@ -11,6 +11,7 @@ const signupUser = async (req, res) => {
 
     try {
         const user = await User.signup(additionalName, password, StudentID, email, telephone, balance, amount);
+        //create token for each user
         const token = await createToken(user._id);
         res.status(200).json({ user, token });
     } catch (error) {
