@@ -15,7 +15,6 @@ const historySchema = new Schema(
         StudentID: {
             type: String,
             require: true,
-            unique: true,
         },
         email: {
             type: String,
@@ -36,6 +35,7 @@ historySchema.statics.appendData = async function (userID, additionalName, Stude
         throw Error('All fill must be filled');
     }
 
+    //find if this studentID is already exist on UserDB or not
     const exist = await User.findOne({ StudentID });
     if (!exist) {
         throw Error('Invalid StudentID');
