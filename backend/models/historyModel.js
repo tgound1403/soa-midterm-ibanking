@@ -50,7 +50,7 @@ historySchema.statics.getUserHistoryTransaction = async function (StudentID) {
         throw Error('URL must has one userID params');
     }
 
-    const exist = await this.findOne({ StudentID });
+    const exist = await this.find({ StudentID });
     if (!exist) {
         throw Error('Invalid userID');
     }
