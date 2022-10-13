@@ -87,4 +87,17 @@ userSchema.statics.login = async function (additionalName, password) {
     return user;
 };
 
+userSchema.statics.getUserInfo = async function (StudentID) {
+    if (!StudentID) {
+        throw Error('URL must has one StudentID param');
+    }
+
+    const exist = await this.findOne({ StudentID });
+    if (!exist) {
+        throw Error('Invalid StudentID');
+    }
+
+    return exist;
+};
+
 module.exports = mongoose.model('User', userSchema);

@@ -2,14 +2,19 @@ import { useEffect, useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogout } from '../hooks/useLogout';
+import { useDebounce } from '../hooks/useDebounce';
 const formatCurrency = require('format-currency');
 
 export const TransactionForm = () => {
     const { user } = useAuthContext();
-    const { logout } = useLogout();
     const [history, setHistory] = useState(null);
     //destructuring all the properties from user object
     const { additionalName, StudentID, email, telephone, balance, amount } = user;
+    const [studentName, setStudentName] = useState(null);
+    const [studentID, setStudentID] = useState(null);
+    const [studentBalance, setStudentBalance] = useState(0);
+    const [tuitionRequired, setTuitionRequired] = useState(0);
+    const { logout } = useLogout();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,6 +24,18 @@ export const TransactionForm = () => {
         e.preventDefault();
         await logout();
     };
+
+    const fetchUser = async () => {
+        const response = await fetch(`/api/user/${studentID}`);
+        const json = await response.json();
+        //incase bad request then json.error will be used
+        //same to 0
+        setStudentName(json.additionalName || json.error);
+        setTuitionRequired(json.amount || 'can not find tuition of this student');
+        setStudentBalance(json.balance);
+    };
+
+    useDebounce(fetchUser, 1000, [studentID]);
 
     //fetch API to get user transaction history
     useEffect(() => {
@@ -81,11 +98,11 @@ export const TransactionForm = () => {
                         Student ID
                     </label>
                     <input
-                        disabled
                         required
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={StudentID}
+                        onChange={(e) => setStudentID(e.target.value)}
+                        value={studentID || StudentID}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
                         Student Fullname
@@ -94,7 +111,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={additionalName}
+                        value={studentName || additionalName}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mb-1">
                         Tuition required (VND)
@@ -103,7 +120,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={formatCurrency(amount)}
+                        value={tuitionRequired === 0 ? formatCurrency(amount) : formatCurrency(tuitionRequired)}
                     />
                     <p></p>
                     <br />
@@ -115,7 +132,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={formatCurrency(balance)}
+                        value={studentBalance === 0 ? formatCurrency(balance) : formatCurrency(studentBalance)}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md mb-1">
                         Tuition required (VND)
@@ -124,7 +141,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={formatCurrency(amount)}
+                        value={tuitionRequired === 0 ? formatCurrency(amount) : formatCurrency(tuitionRequired)}
                     />
                     <p>
                         <input type='checkbox' className='rounded text-blue-500' /> I accept with{' '}
