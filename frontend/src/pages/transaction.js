@@ -12,8 +12,9 @@ export const TransactionForm = () => {
     const { additionalName, StudentID, email, telephone, balance, amount } = user;
     const [studentName, setStudentName] = useState(null);
     const [studentID, setStudentID] = useState(null);
-    const [studentBalance, setStudentBalance] = useState(0);
-    const [tuitionRequired, setTuitionRequired] = useState(0);
+    const [studentBalance, setStudentBalance] = useState(balance);
+    const [tuitionRequired, setTuitionRequired] = useState(amount);
+    const [error, setError] = useState(false);
     const { logout } = useLogout();
 
     const handleSubmit = (e) => {
@@ -31,7 +32,7 @@ export const TransactionForm = () => {
         //incase bad request then json.error will be used
         //same to 0
         setStudentName(json.additionalName || json.error);
-        setTuitionRequired(json.amount || 'can not find tuition of this student');
+        setTuitionRequired(json.amount);
         setStudentBalance(json.balance);
     };
 
@@ -46,6 +47,11 @@ export const TransactionForm = () => {
         };
         fetchHistory();
     }, [StudentID]);
+
+    //compare if balance is less tuition required
+    useEffect(() => {
+        studentBalance < tuitionRequired ? setError(true) : setError(false);
+    }, [studentName, studentBalance, tuitionRequired]);
 
     return (
         <>
@@ -120,7 +126,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={tuitionRequired === 0 ? formatCurrency(amount) : formatCurrency(tuitionRequired)}
+                        value={formatCurrency(tuitionRequired)}
                     />
                     <p></p>
                     <br />
@@ -132,7 +138,7 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={studentBalance === 0 ? formatCurrency(balance) : formatCurrency(studentBalance)}
+                        value={formatCurrency(studentBalance)}
                     />
                     <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md mb-1">
                         Tuition required (VND)
@@ -141,8 +147,45 @@ export const TransactionForm = () => {
                         disabled
                         type='text'
                         className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        value={tuitionRequired === 0 ? formatCurrency(amount) : formatCurrency(tuitionRequired)}
+                        value={formatCurrency(tuitionRequired)}
                     />
+                    {error ? (
+                        <div className='flex my-2'>
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                strokeWidth={1.5}
+                                stroke='currentColor'
+                                className='w-6 h-6 text-red-500'
+                            >
+                                <path
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    d='M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z'
+                                />
+                            </svg>
+                            <em className='ml-2 text-red-500'>Your balance is less than tuition required!</em>
+                        </div>
+                    ) : (
+                        <div className='flex my-2'>
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                strokeWidth={1.5}
+                                stroke='currentColor'
+                                className='w-6 h-6 text-green-500'
+                            >
+                                <path
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    d='M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z'
+                                />
+                            </svg>
+                            <em className='ml-2 text-green-500'>All information accepted!</em>
+                        </div>
+                    )}
                     <p>
                         <input type='checkbox' className='rounded text-blue-500' /> I accept with{' '}
                         <a href='/' className='font-bold italic text-green-500'>
@@ -161,22 +204,26 @@ export const TransactionForm = () => {
                             className='group cursor-not-allowed relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
                         >
                             <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
-                                <LockClosedIcon
-                                    className='h-5 w-5 text-green-500 group-hover:text-green-400'
-                                    aria-hidden='true'
-                                />
+                                {error && (
+                                    <LockClosedIcon
+                                        className='h-5 w-5 text-green-500 group-hover:text-green-400'
+                                        aria-hidden='true'
+                                    />
+                                )}
                             </span>
                             Send
                         </button>
                         <br />
-                        <button
-                            onClick={handleLogout}
-                            type='submit'
-                            className='bg-green-600 hover:bg-green-400 w-full px-6 p-2 rounded-md text-white font-bold'
-                        >
-                            {' '}
-                            Log Out{' '}
-                        </button>
+                        <div>
+                            <button
+                                onClick={handleLogout}
+                                type='submit'
+                                className='bg-green-600 hover:bg-green-400 w-full px-6 p-2 rounded-md text-white font-bold'
+                            >
+                                {' '}
+                                Log Out{' '}
+                            </button>
+                        </div>
                     </div>
                 </form>
                 <p className='text-green-500 italic text-center font-bold mt-2 '> &copy; DMT Team</p>
