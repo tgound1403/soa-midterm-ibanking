@@ -19,6 +19,7 @@ export const TransactionForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(1); //just for test
     };
 
     const handleLogout = async (e) => {

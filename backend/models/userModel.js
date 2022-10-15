@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const { generateOTP } = require('../services/OTP');
+const { sendEmail } = require('../services/Mail');
 
 const userSchema = new Schema(
     {
@@ -37,6 +39,10 @@ const userSchema = new Schema(
             type: Number,
             required: true,
         },
+        OTP: {
+            type: String,
+            required: true,
+        },
     },
     { timestamps: true }
 );
@@ -65,8 +71,29 @@ userSchema.statics.signup = async function (additionalName, password, StudentID,
     //encrypted password
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
+    const otpGenerated = await generateOTP();
 
-    const user = await this.create({ additionalName, password: hash, StudentID, email, telephone, balance, amount });
+    const user = await this.create({
+        additionalName,
+        password: hash,
+        StudentID,
+        email,
+        telephone,
+        balance,
+        amount,
+        OTP: otpGenerated,
+    });
+
+    try {
+        const test = await sendEmail({
+            to: email,
+            OTP: otpGenerated,
+        });
+        console.log(1);
+        console.log(test);
+    } catch (error) {
+        throw Error('Unable to sign up, Please try again later', error);
+    }
     return user;
 };
 
