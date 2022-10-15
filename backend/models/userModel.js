@@ -84,16 +84,6 @@ userSchema.statics.signup = async function (additionalName, password, StudentID,
         OTP: otpGenerated,
     });
 
-    try {
-        const test = await sendEmail({
-            to: email,
-            OTP: otpGenerated,
-        });
-        console.log(1);
-        console.log(test);
-    } catch (error) {
-        throw Error('Unable to sign up, Please try again later', error);
-    }
     return user;
 };
 
@@ -125,6 +115,28 @@ userSchema.statics.getUserInfo = async function (StudentID) {
     }
 
     return exist;
+};
+
+userSchema.statics.sendOTP = async function (email) {
+    const { OTP } = await this.findOne({ email });
+    try {
+        const response = await sendEmail({
+            to: email,
+            OTP,
+        });
+        console.log('Mail sended successfully <3');
+        console.log(response);
+        return true;
+    } catch (error) {
+        console.log('Something wrong while sending mail :((');
+        console.log(error);
+        return false;
+    }
+};
+
+userSchema.statics.verifyOTP = async function (OTP) {
+    const exist = await this.findOne({ OTP });
+    return !exist ? false : true;
 };
 
 module.exports = mongoose.model('User', userSchema);

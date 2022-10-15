@@ -1,25 +1,41 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogout } from '../hooks/useLogout';
 import { useDebounce } from '../hooks/useDebounce';
+import { useOTP } from '../hooks/useOTP';
+import { useHistories } from '../hooks/useHistories';
+import { useFetchUser } from '../hooks/useFetchUser';
 const formatCurrency = require('format-currency');
 
 export const TransactionForm = () => {
     const { user } = useAuthContext();
-    const [history, setHistory] = useState(null);
     //destructuring all the properties from user object
     const { additionalName, StudentID, email, telephone, balance, amount } = user;
+    const [history, setHistory] = useState(null);
     const [studentName, setStudentName] = useState(null);
-    const [studentID, setStudentID] = useState(null);
+    const [studentID, setStudentID] = useState(StudentID);
     const [studentBalance, setStudentBalance] = useState(balance);
     const [tuitionRequired, setTuitionRequired] = useState(amount);
     const [error, setError] = useState(false);
+    const [isCorrectOTP, setIsCorrectOTP] = useState(false);
+    const [showInputOTP, setShowInputOTP] = useState(false);
     const { logout } = useLogout();
+    const { sendOTP, verifyOTP } = useOTP();
+    const { getHistories } = useHistories();
+    const { getUser } = useFetchUser();
+    const OTPRef = useRef();
 
-    const handleSubmit = (e) => {
+    const handleSendOTP = async (e) => {
         e.preventDefault();
-        console.log(1); //just for test
+        setShowInputOTP(true);
+        await sendOTP();
+    };
+
+    const handleVerifyOTP = async (e) => {
+        e.preventDefault();
+        const isOTP = await verifyOTP(OTPRef.current.value);
+        isOTP ? setIsCorrectOTP(true) : setIsCorrectOTP(false);
     };
 
     const handleLogout = async (e) => {
@@ -27,27 +43,24 @@ export const TransactionForm = () => {
         await logout();
     };
 
+    //fetch API to get user information
     const fetchUser = async () => {
-        const response = await fetch(`/api/user/${studentID}`);
-        const json = await response.json();
+        const json = await getUser(studentID);
         //incase bad request then json.error will be used
         //same to 0
         setStudentName(json.additionalName || json.error);
         setTuitionRequired(json.amount);
         setStudentBalance(json.balance);
     };
-
     useDebounce(fetchUser, 1000, [studentID]);
 
     //fetch API to get user transaction history
-    useEffect(() => {
-        const fetchHistory = async () => {
-            const response = await fetch(`/api/history/${StudentID}`);
-            const json = await response.json();
-            setHistory(json);
-        };
-        fetchHistory();
-    }, [StudentID]);
+    const fetchHistory = async () => {
+        console.log('test');
+        const histories = await getHistories(studentID);
+        setHistory(histories);
+    };
+    useDebounce(fetchHistory, 1000, [studentID]);
 
     //compare if balance is less tuition required
     useEffect(() => {
@@ -65,10 +78,7 @@ export const TransactionForm = () => {
                         Banking
                     </h1>
                 </div>
-                <form
-                    onSubmit={handleSubmit}
-                    className='transaction-form w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 lg:w-4/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg'
-                >
+                <form className='transaction-form w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 lg:w-4/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg'>
                     {history &&
                         history.map((item, index) => {
                             return <h1 key={index}>History: {new Date(item.createdAt).toLocaleString('vi-vn')}</h1>;
@@ -76,6 +86,7 @@ export const TransactionForm = () => {
                     <label className='text-3xl font-bold text-green-500'>Sender</label>
                     <label className='italic block text-gray-700 text-md  mb-1'>Fullname</label>
                     <input
+                        style={{ cursor: 'not-allowed' }}
                         disabled
                         required
                         type='text'
@@ -84,6 +95,7 @@ export const TransactionForm = () => {
                     />
                     <label className='italic block text-gray-700 text-md  mb-1'>Phone number</label>
                     <input
+                        style={{ cursor: 'not-allowed' }}
                         disabled
                         required
                         type='text'
@@ -92,6 +104,7 @@ export const TransactionForm = () => {
                     />
                     <label className='italic block text-gray-700 text-md  mb-1'>Email</label>
                     <input
+                        style={{ cursor: 'not-allowed' }}
                         disabled
                         required
                         type='text'
@@ -200,20 +213,30 @@ export const TransactionForm = () => {
                     <p></p>
                     <br />
                     <div>
-                        <button
-                            type='submit'
-                            className='group cursor-not-allowed relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
-                        >
-                            <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
-                                {error && (
+                        {error ? (
+                            <button
+                                onClick={handleSendOTP}
+                                type='submit'
+                                className='group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                            >
+                                <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
                                     <LockClosedIcon
                                         className='h-5 w-5 text-green-500 group-hover:text-green-400'
                                         aria-hidden='true'
                                     />
-                                )}
-                            </span>
-                            Send
-                        </button>
+                                </span>
+                                Send OTP
+                            </button>
+                        ) : (
+                            <button
+                                onClick={handleSendOTP}
+                                type='submit'
+                                className='group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                            >
+                                <span className='absolute inset-y-0 left-0 flex items-center pl-3'></span>
+                                Send OTP
+                            </button>
+                        )}
                         <br />
                         <div>
                             <button
@@ -226,6 +249,24 @@ export const TransactionForm = () => {
                             </button>
                         </div>
                     </div>
+                    {showInputOTP && (
+                        <>
+                            <input type={'text'} ref={OTPRef} />
+                            <button
+                                onClick={handleVerifyOTP}
+                                type='submit'
+                                className='group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                            >
+                                <span className='absolute inset-y-0 left-0 flex items-center pl-3'></span>
+                                Verify
+                            </button>
+                        </>
+                    )}
+                    {isCorrectOTP ? (
+                        <h1 className='text-green-500'>Correct OTP</h1>
+                    ) : (
+                        <h1 className='text-red-500'>Wrong OTP</h1>
+                    )}
                 </form>
                 <p className='text-green-500 italic text-center font-bold mt-2 '> &copy; DMT Team</p>
             </div>

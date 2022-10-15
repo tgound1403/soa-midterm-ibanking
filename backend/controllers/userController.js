@@ -33,6 +33,7 @@ const loginUser = async (req, res) => {
             telephone: user.telephone,
             balance: user.balance,
             amount: user.amount,
+            OTP: user.OTP,
             token,
         });
     } catch (error) {
@@ -50,8 +51,30 @@ const getUser = async (req, res) => {
     }
 };
 
+const sendOTPByEmail = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const isVerify = await User.sendOTP(email);
+        res.status(200).json(isVerify);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+const verifyUserOTP = async (req, res) => {
+    const { OTP } = req.body;
+    try {
+        const user = await User.verifyOTP(OTP);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
 module.exports = {
     loginUser,
     signupUser,
     getUser,
+    sendOTPByEmail,
+    verifyUserOTP,
 };
