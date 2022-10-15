@@ -10,7 +10,6 @@
 *,
 ::before,
 ::after {
-<<<<<<< HEAD
   box-sizing: border-box;
   /* 1 */
   border-width: 0;
@@ -19,25 +18,11 @@
   /* 2 */
   border-color: #e5e7eb;
   /* 2 */
-=======
-    box-sizing: border-box;
-    /* 1 */
-    border-width: 0;
-    /* 2 */
-    border-style: solid;
-    /* 2 */
-    border-color: #e5e7eb;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 ::before,
 ::after {
-<<<<<<< HEAD
   --tw-content: '';
-=======
-    --tw-content: '';
->>>>>>> MinhBranch
 }
 
 /*
@@ -48,27 +33,15 @@
 */
 
 html {
-<<<<<<< HEAD
   line-height: 1.5;
   /* 1 */
-  -webkit-text-size-adjust: 100%;
   /* 2 */
   /* 3 */
   tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   /* 4 */
-=======
-    line-height: 1.5;
-    /* 1 */
-    /* 2 */
-    /* 3 */
-    tab-size: 4;
-    /* 3 */
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-        Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    /* 4 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -77,17 +50,10 @@ html {
 */
 
 body {
-<<<<<<< HEAD
   margin: 0;
   /* 1 */
   line-height: inherit;
   /* 2 */
-=======
-    margin: 0;
-    /* 1 */
-    line-height: inherit;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -97,21 +63,12 @@ body {
 */
 
 hr {
-<<<<<<< HEAD
   height: 0;
   /* 1 */
   color: inherit;
   /* 2 */
   border-top-width: 1px;
   /* 3 */
-=======
-    height: 0;
-    /* 1 */
-    color: inherit;
-    /* 2 */
-    border-top-width: 1px;
-    /* 3 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -119,13 +76,8 @@ Add the correct text decoration in Chrome, Edge, and Safari.
 */
 
 abbr:where([title]) {
-<<<<<<< HEAD
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
-=======
-    -webkit-text-decoration: underline dotted;
-    text-decoration: underline dotted;
->>>>>>> MinhBranch
+  text-decoration: underline dotted;
 }
 
 /*
@@ -138,13 +90,8 @@ h3,
 h4,
 h5,
 h6 {
-<<<<<<< HEAD
   font-size: inherit;
   font-weight: inherit;
-=======
-    font-size: inherit;
-    font-weight: inherit;
->>>>>>> MinhBranch
 }
 
 /*
@@ -152,13 +99,8 @@ Reset links to optimize for opt-in styling instead of opt-out.
 */
 
 a {
-<<<<<<< HEAD
   color: inherit;
   text-decoration: inherit;
-=======
-    color: inherit;
-    text-decoration: inherit;
->>>>>>> MinhBranch
 }
 
 /*
@@ -167,11 +109,7 @@ Add the correct font weight in Edge and Safari.
 
 b,
 strong {
-<<<<<<< HEAD
   font-weight: bolder;
-=======
-    font-weight: bolder;
->>>>>>> MinhBranch
 }
 
 /*
@@ -183,17 +121,10 @@ code,
 kbd,
 samp,
 pre {
-<<<<<<< HEAD
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */
-=======
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-    /* 1 */
-    font-size: 1em;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -201,11 +132,7 @@ Add the correct font size in all browsers.
 */
 
 small {
-<<<<<<< HEAD
   font-size: 80%;
-=======
-    font-size: 80%;
->>>>>>> MinhBranch
 }
 
 /*
@@ -214,7 +141,6 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 
 sub,
 sup {
-<<<<<<< HEAD
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -227,20 +153,6 @@ sub {
 
 sup {
   top: -0.5em;
-=======
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
-
-sub {
-    bottom: -0.25em;
-}
-
-sup {
-    top: -0.5em;
->>>>>>> MinhBranch
 }
 
 /*
@@ -250,21 +162,12 @@ sup {
 */
 
 table {
-<<<<<<< HEAD
   text-indent: 0;
   /* 1 */
   border-color: inherit;
   /* 2 */
   border-collapse: collapse;
   /* 3 */
-=======
-    text-indent: 0;
-    /* 1 */
-    border-color: inherit;
-    /* 2 */
-    border-collapse: collapse;
-    /* 3 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -278,7 +181,6 @@ input,
 optgroup,
 select,
 textarea {
-<<<<<<< HEAD
   font-family: inherit;
   /* 1 */
   font-size: 100%;
@@ -293,22 +195,6 @@ textarea {
   /* 2 */
   padding: 0;
   /* 3 */
-=======
-    font-family: inherit;
-    /* 1 */
-    font-size: 100%;
-    /* 1 */
-    font-weight: inherit;
-    /* 1 */
-    line-height: inherit;
-    /* 1 */
-    color: inherit;
-    /* 1 */
-    margin: 0;
-    /* 2 */
-    padding: 0;
-    /* 3 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -317,11 +203,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 
 button,
 select {
-<<<<<<< HEAD
   text-transform: none;
-=======
-    text-transform: none;
->>>>>>> MinhBranch
 }
 
 /*
@@ -333,21 +215,12 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
-<<<<<<< HEAD
   -webkit-appearance: button;
   /* 1 */
   background-color: transparent;
   /* 2 */
   background-image: none;
   /* 2 */
-=======
-    -webkit-appearance: button;
-    /* 1 */
-    background-color: transparent;
-    /* 2 */
-    background-image: none;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -355,11 +228,7 @@ Use the modern Firefox focus style for all focusable elements.
 */
 
 :-moz-focusring {
-<<<<<<< HEAD
   outline: auto;
-=======
-    outline: auto;
->>>>>>> MinhBranch
 }
 
 /*
@@ -367,11 +236,7 @@ Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/
 */
 
 :-moz-ui-invalid {
-<<<<<<< HEAD
   box-shadow: none;
-=======
-    box-shadow: none;
->>>>>>> MinhBranch
 }
 
 /*
@@ -379,11 +244,7 @@ Add the correct vertical alignment in Chrome and Firefox.
 */
 
 progress {
-<<<<<<< HEAD
   vertical-align: baseline;
-=======
-    vertical-align: baseline;
->>>>>>> MinhBranch
 }
 
 /*
@@ -392,11 +253,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
-<<<<<<< HEAD
   height: auto;
-=======
-    height: auto;
->>>>>>> MinhBranch
 }
 
 /*
@@ -405,17 +262,10 @@ Correct the cursor style of increment and decrement buttons in Safari.
 */
 
 [type='search'] {
-<<<<<<< HEAD
   -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
   /* 2 */
-=======
-    -webkit-appearance: textfield;
-    /* 1 */
-    outline-offset: -2px;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -423,11 +273,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 */
 
 ::-webkit-search-decoration {
-<<<<<<< HEAD
   -webkit-appearance: none;
-=======
-    -webkit-appearance: none;
->>>>>>> MinhBranch
 }
 
 /*
@@ -436,17 +282,10 @@ Remove the inner padding in Chrome and Safari on macOS.
 */
 
 ::-webkit-file-upload-button {
-<<<<<<< HEAD
   -webkit-appearance: button;
   /* 1 */
   font: inherit;
   /* 2 */
-=======
-    -webkit-appearance: button;
-    /* 1 */
-    font: inherit;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -454,11 +293,7 @@ Add the correct display in Chrome and Safari.
 */
 
 summary {
-<<<<<<< HEAD
   display: list-item;
-=======
-    display: list-item;
->>>>>>> MinhBranch
 }
 
 /*
@@ -478,7 +313,6 @@ hr,
 figure,
 p,
 pre {
-<<<<<<< HEAD
   margin: 0;
 }
 
@@ -489,32 +323,14 @@ fieldset {
 
 legend {
   padding: 0;
-=======
-    margin: 0;
-}
-
-fieldset {
-    margin: 0;
-    padding: 0;
-}
-
-legend {
-    padding: 0;
->>>>>>> MinhBranch
 }
 
 ol,
 ul,
 menu {
-<<<<<<< HEAD
   list-style: none;
   margin: 0;
   padding: 0;
-=======
-    list-style: none;
-    margin: 0;
-    padding: 0;
->>>>>>> MinhBranch
 }
 
 /*
@@ -522,11 +338,7 @@ Prevent resizing textareas horizontally by default.
 */
 
 textarea {
-<<<<<<< HEAD
   resize: vertical;
-=======
-    resize: vertical;
->>>>>>> MinhBranch
 }
 
 /*
@@ -534,35 +346,20 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-<<<<<<< HEAD
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
   opacity: 1;
   /* 1 */
   color: #9ca3af;
   /* 2 */
-=======
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-    opacity: 1;
-    /* 1 */
-    color: #9ca3af;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 input::placeholder,
 textarea::placeholder {
-<<<<<<< HEAD
   opacity: 1;
   /* 1 */
   color: #9ca3af;
   /* 2 */
-=======
-    opacity: 1;
-    /* 1 */
-    color: #9ca3af;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -570,13 +367,8 @@ Set the default cursor for buttons.
 */
 
 button,
-<<<<<<< HEAD
-[role="button"] {
-  cursor: pointer;
-=======
 [role='button'] {
-    cursor: pointer;
->>>>>>> MinhBranch
+  cursor: pointer;
 }
 
 /*
@@ -584,11 +376,7 @@ Make sure disabled buttons don't get the pointer cursor.
 */
 
 :disabled {
-<<<<<<< HEAD
   cursor: default;
-=======
-    cursor: default;
->>>>>>> MinhBranch
 }
 
 /*
@@ -605,17 +393,10 @@ audio,
 iframe,
 embed,
 object {
-<<<<<<< HEAD
   display: block;
   /* 1 */
   vertical-align: middle;
   /* 2 */
-=======
-    display: block;
-    /* 1 */
-    vertical-align: middle;
-    /* 2 */
->>>>>>> MinhBranch
 }
 
 /*
@@ -624,12 +405,13 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 img,
 video {
-<<<<<<< HEAD
   max-width: 100%;
   height: auto;
 }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -639,16 +421,16 @@ video {
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -656,24 +438,24 @@ video {
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
 }
 
 ::-webkit-backdrop {
@@ -686,16 +468,16 @@ video {
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -703,24 +485,24 @@ video {
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
 }
 
 ::backdrop {
@@ -733,16 +515,16 @@ video {
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -750,24 +532,24 @@ video {
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
 }
 
 .text-3xl {
@@ -785,187 +567,12 @@ video {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
-=======
-    max-width: 100%;
-    height: auto;
-}
-
-*,
-::before,
-::after {
-    --tw-border-spacing-x: 0;
-    --tw-border-spacing-y: 0;
-    --tw-translate-x: 0;
-    --tw-translate-y: 0;
-    --tw-rotate: 0;
-    --tw-skew-x: 0;
-    --tw-skew-y: 0;
-    --tw-scale-x: 1;
-    --tw-scale-y: 1;
-    --tw-pan-x: ;
-    --tw-pan-y: ;
-    --tw-pinch-zoom: ;
-    --tw-scroll-snap-strictness: proximity;
-    --tw-ordinal: ;
-    --tw-slashed-zero: ;
-    --tw-numeric-figure: ;
-    --tw-numeric-spacing: ;
-    --tw-numeric-fraction: ;
-    --tw-ring-inset: ;
-    --tw-ring-offset-width: 0px;
-    --tw-ring-offset-color: #fff;
-    --tw-ring-color: rgb(59 130 246 / 0.5);
-    --tw-ring-offset-shadow: 0 0 #0000;
-    --tw-ring-shadow: 0 0 #0000;
-    --tw-shadow: 0 0 #0000;
-    --tw-shadow-colored: 0 0 #0000;
-    --tw-blur: ;
-    --tw-brightness: ;
-    --tw-contrast: ;
-    --tw-grayscale: ;
-    --tw-hue-rotate: ;
-    --tw-invert: ;
-    --tw-saturate: ;
-    --tw-sepia: ;
-    --tw-drop-shadow: ;
-    --tw-backdrop-blur: ;
-    --tw-backdrop-brightness: ;
-    --tw-backdrop-contrast: ;
-    --tw-backdrop-grayscale: ;
-    --tw-backdrop-hue-rotate: ;
-    --tw-backdrop-invert: ;
-    --tw-backdrop-opacity: ;
-    --tw-backdrop-saturate: ;
-    --tw-backdrop-sepia: ;
-}
-
-::-webkit-backdrop {
-    --tw-border-spacing-x: 0;
-    --tw-border-spacing-y: 0;
-    --tw-translate-x: 0;
-    --tw-translate-y: 0;
-    --tw-rotate: 0;
-    --tw-skew-x: 0;
-    --tw-skew-y: 0;
-    --tw-scale-x: 1;
-    --tw-scale-y: 1;
-    --tw-pan-x: ;
-    --tw-pan-y: ;
-    --tw-pinch-zoom: ;
-    --tw-scroll-snap-strictness: proximity;
-    --tw-ordinal: ;
-    --tw-slashed-zero: ;
-    --tw-numeric-figure: ;
-    --tw-numeric-spacing: ;
-    --tw-numeric-fraction: ;
-    --tw-ring-inset: ;
-    --tw-ring-offset-width: 0px;
-    --tw-ring-offset-color: #fff;
-    --tw-ring-color: rgb(59 130 246 / 0.5);
-    --tw-ring-offset-shadow: 0 0 #0000;
-    --tw-ring-shadow: 0 0 #0000;
-    --tw-shadow: 0 0 #0000;
-    --tw-shadow-colored: 0 0 #0000;
-    --tw-blur: ;
-    --tw-brightness: ;
-    --tw-contrast: ;
-    --tw-grayscale: ;
-    --tw-hue-rotate: ;
-    --tw-invert: ;
-    --tw-saturate: ;
-    --tw-sepia: ;
-    --tw-drop-shadow: ;
-    --tw-backdrop-blur: ;
-    --tw-backdrop-brightness: ;
-    --tw-backdrop-contrast: ;
-    --tw-backdrop-grayscale: ;
-    --tw-backdrop-hue-rotate: ;
-    --tw-backdrop-invert: ;
-    --tw-backdrop-opacity: ;
-    --tw-backdrop-saturate: ;
-    --tw-backdrop-sepia: ;
-}
-
-::backdrop {
-    --tw-border-spacing-x: 0;
-    --tw-border-spacing-y: 0;
-    --tw-translate-x: 0;
-    --tw-translate-y: 0;
-    --tw-rotate: 0;
-    --tw-skew-x: 0;
-    --tw-skew-y: 0;
-    --tw-scale-x: 1;
-    --tw-scale-y: 1;
-    --tw-pan-x: ;
-    --tw-pan-y: ;
-    --tw-pinch-zoom: ;
-    --tw-scroll-snap-strictness: proximity;
-    --tw-ordinal: ;
-    --tw-slashed-zero: ;
-    --tw-numeric-figure: ;
-    --tw-numeric-spacing: ;
-    --tw-numeric-fraction: ;
-    --tw-ring-inset: ;
-    --tw-ring-offset-width: 0px;
-    --tw-ring-offset-color: #fff;
-    --tw-ring-color: rgb(59 130 246 / 0.5);
-    --tw-ring-offset-shadow: 0 0 #0000;
-    --tw-ring-shadow: 0 0 #0000;
-    --tw-shadow: 0 0 #0000;
-    --tw-shadow-colored: 0 0 #0000;
-    --tw-blur: ;
-    --tw-brightness: ;
-    --tw-contrast: ;
-    --tw-grayscale: ;
-    --tw-hue-rotate: ;
-    --tw-invert: ;
-    --tw-saturate: ;
-    --tw-sepia: ;
-    --tw-drop-shadow: ;
-    --tw-backdrop-blur: ;
-    --tw-backdrop-brightness: ;
-    --tw-backdrop-contrast: ;
-    --tw-backdrop-grayscale: ;
-    --tw-backdrop-hue-rotate: ;
-    --tw-backdrop-invert: ;
-    --tw-backdrop-opacity: ;
-    --tw-backdrop-saturate: ;
-    --tw-backdrop-sepia: ;
-}
-
-.text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-}
-
-.font-bold {
-    font-weight: 700;
-}
-
-.underline {
-    text-decoration-line: underline;
-}
-
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-        'Droid Sans', 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
->>>>>>> MinhBranch
