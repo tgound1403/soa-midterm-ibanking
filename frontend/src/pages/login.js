@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { useLogin } from '../hooks/useLogin';
 
 export const LoginPage = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const usernameRef = useRef();
+    const passwordRef = useRef();
     const { login, error } = useLogin();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await login(username, password);
+        await login(usernameRef.current.value, passwordRef.current.value);
     };
 
     return (
@@ -35,10 +35,7 @@ export const LoginPage = () => {
                         placeholder='username'
                         type='text'
                         className='peer shadow mb-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        onChange={(e) => {
-                            setUsername(e.target.value);
-                        }}
-                        value={username}
+                        ref={usernameRef}
                     />
                     <label htmlFor='password' className='block text-gray-700 text-md font-bold mb-1'>
                         Password
@@ -48,10 +45,7 @@ export const LoginPage = () => {
                         placeholder='password'
                         type='text'
                         className='peer shadow mb-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        value={password}
+                        ref={passwordRef}
                     />
                     {error && <i className='text-red-600'>{error}</i>}
                     <p>

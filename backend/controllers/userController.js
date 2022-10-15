@@ -1,6 +1,7 @@
 require('dotenv').config();
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const { response } = require('express');
 
 const createToken = (_id) => {
     return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' });
@@ -11,6 +12,7 @@ const signupUser = async (req, res) => {
 
     try {
         const user = await User.signup(additionalName, password, StudentID, email, telephone, balance, amount);
+        //create token for each user
         const token = await createToken(user._id);
         res.status(200).json({ user, token });
     } catch (error) {
@@ -38,4 +40,18 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = { loginUser, signupUser };
+const getUser = async (req, res) => {
+    const { StudentID } = req.params;
+    try {
+        const user = await User.getUserInfo(StudentID);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+module.exports = {
+    loginUser,
+    signupUser,
+    getUser,
+};
