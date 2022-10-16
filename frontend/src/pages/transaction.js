@@ -6,6 +6,8 @@ import {
   BanknotesIcon,
   ArrowLeftOnRectangleIcon,
   ClipboardDocumentIcon,
+  CheckBadgeIcon,
+  ExclamationTriangleIcon,
 } from "@heroicons/react/20/solid";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
@@ -78,13 +80,11 @@ export const TransactionForm = () => {
           <div className="flex justify-between mb-2">
             <ArrowLeftOnRectangleIcon
               onClick={handleLogout}
-              className=" h-9 w-9 cursor-pointer text-green-600 mr-2"
-              aria-hidden="true"
+              className=" h-8 w-8 cursor-pointer text-red-500 mr-2"
             />
             <ClipboardDocumentIcon
-              href="/history"
-              className="h-9 w-9 cursor-pointer text-green-600 mr-2"
-              aria-hidden="true"
+              href="#"
+              className="h-8 w-8 cursor-pointer text-yellow-500 mr-2"
             />
           </div>
           <div className="flex mb-1">
@@ -94,8 +94,8 @@ export const TransactionForm = () => {
             />
             <label className="text-3xl font-bold text-green-600">Sender</label>
           </div>
-          <div class="flex flex-wrap">
-            <div class="w-full md:w-2/3 px-2 mb-6 md:mb-0">
+          <div className="flex flex-wrap">
+            <div className="w-full md:w-2/3 px-2 md:mb-0">
               <label className="italic block text-gray-700 text-md ">
                 Fullname
               </label>
@@ -108,7 +108,7 @@ export const TransactionForm = () => {
                 value={additionalName}
               />
             </div>
-            <div class="w-full md:w-1/3 px-2 mb-6 md:mb-0">
+            <div className="w-full md:w-1/3 px-2 md:mb-0">
               <label className="italic block text-gray-700 text-md ">
                 Phone number
               </label>
@@ -122,7 +122,7 @@ export const TransactionForm = () => {
               />
             </div>
           </div>
-          <div class="px-2">
+          <div className="px-2">
             <label className="italic block text-gray-700 text-md mt-1">
               Email
             </label>
@@ -144,8 +144,8 @@ export const TransactionForm = () => {
             />
             <label className="text-3xl font-bold text-green-600">Tuition</label>
           </div>
-          <div class="flex flex-wrap">
-            <div class="w-full md:w-1/3 px-2 mb-6 md:mb-0">
+          <div className="flex flex-wrap">
+            <div className="w-full md:w-1/3 px-2 md:mb-0">
               <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md ">
                 Student ID
               </label>
@@ -157,7 +157,7 @@ export const TransactionForm = () => {
                 value={studentID || StudentID}
               />
             </div>
-            <div class="w-full md:w-2/3 px-2 mb-6 md:mb-0">
+            <div className="w-full md:w-2/3 px-2 md:mb-0">
               <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  ">
                 Student Fullname
               </label>
@@ -192,7 +192,7 @@ export const TransactionForm = () => {
             </label>
           </div>
           <div className="flex flex-wrap">
-            <div class="w-full md:w-1/2 px-2 mb-6 md:mb-0">
+            <div className="w-full md:w-1/2 px-2 md:mb-0">
               <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md ">
                 Sender balance (VND)
               </label>
@@ -203,7 +203,7 @@ export const TransactionForm = () => {
                 value={formatCurrency(studentBalance)}
               />
             </div>
-            <div class="w-full md:w-1/2 px-2 mb-6 md:mb-0">
+            <div className="w-full md:w-1/2 px-2 mb-6 md:mb-0">
               <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md ">
                 Tuition required (VND)
               </label>
@@ -217,40 +217,14 @@ export const TransactionForm = () => {
           </div>
           {error ? (
             <div className="flex my-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 text-red-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-                />
-              </svg>
+              <ExclamationTriangleIcon className="h-6 w-6 cursor-pointer text-red-500" />
               <em className="ml-2 text-red-500">
                 Your balance is less than tuition required!
               </em>
             </div>
           ) : (
             <div className="flex my-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 text-green-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-                />
-              </svg>
+              <CheckBadgeIcon className="h-6 w-6 cursor-pointer text-green-500" />
               <em className="ml-2 text-green-500">All information accepted!</em>
             </div>
           )}
@@ -268,37 +242,26 @@ export const TransactionForm = () => {
           <p></p>
           <br />
           <div>
-            {error ? (
-              <button
-                onClick={handleSendOTP}
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-              >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon
-                    className="h-5 w-5 text-green-500 group-hover:text-green-400"
-                    aria-hidden="true"
-                  />
-                </span>
-                Send OTP
-              </button>
-            ) : (
-              <button
-                onClick={handleSendOTP}
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-              >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
-                Send OTP
-              </button>
-            )}
+            <button
+              onClick={!error ? handleSendOTP : ""}
+              type="submit"
+              className="group relative flex w-full cursor-not-allowed justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-md font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            >
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                {error ? (
+                  <LockClosedIcon className="h-6 w-6 cursor-pointer text-green-500" />
+                ) : (
+                  <></>
+                )}
+              </span>
+              Send OTP
+            </button>
+
             <br />
           </div>
           {showInputOTP && (
             <>
-              <label className="italic block text-gray-700 text-md mt-2">
-                OTP
-              </label>
+              <label className="italic block text-gray-700 text-md">OTP</label>
               <input
                 ref={OTPRef}
                 required
@@ -308,7 +271,7 @@ export const TransactionForm = () => {
               <button
                 onClick={handleVerifyOTP}
                 type="submit"
-                className="group relative flex w-full justify-center mt-2 rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                className="group relative flex w-full justify-center mt-2 rounded-md border border-transparent bg-green-600 py-2 px-4 text-md font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
                 Verify
@@ -321,10 +284,6 @@ export const TransactionForm = () => {
             </>
           )}
         </form>
-        <p className="text-green-500 italic text-center font-bold mt-2 ">
-          {" "}
-          &copy; DMT Team
-        </p>
       </div>
     </>
   );

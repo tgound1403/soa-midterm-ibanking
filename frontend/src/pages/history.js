@@ -32,7 +32,7 @@ export const HistoryPage = () => {
   return (
     <>
       <div className="background lg:h-screen h-screen bg-gradient-to-r from-yellow-300 to-green-400">
-        <div className=" px-2 py-6 my-0 mx-auto w-11/12 rounded-b-lg bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
+        <div className=" px-2 py-6 mb-16 my-0 mx-auto w-11/12 rounded-b-lg bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
           <h1 className="text-4xl  font-bold text-center">
             <a href="/" className="text-green-600">
               i
@@ -45,7 +45,7 @@ export const HistoryPage = () => {
             return (
               <div
                 key={index}
-                className="w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 lg:w-4/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg"
+                className="w-11/12 my-0 mx-auto mt-4 sm:w-11/12 md:w-8/12 lg:w-4/12 shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg"
               >
                 <span className="flex flex-wrap">
                   <p className="font-bold text-4xl text-green-600 mb-2">Send</p>
