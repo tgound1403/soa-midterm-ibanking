@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useLogin } from '../hooks/useLogin';
+import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
     const usernameRef = useRef();
@@ -16,9 +17,9 @@ export const LoginPage = () => {
             <div className='background lg:h-full h-screen bg-gradient-to-r from-yellow-300 to-green-400'>
                 <div className=' px-2 py-6 my-0 mx-auto w-11/12 rounded-b-lg bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg'>
                     <h1 className='text-4xl  font-bold text-center'>
-                        <a href='/' className='text-green-600'>
+                        <Link to='/' className='text-green-600'>
                             i
-                        </a>
+                        </Link>
                         Banking
                     </h1>
                 </div>
@@ -43,7 +44,7 @@ export const LoginPage = () => {
                     <input
                         required
                         placeholder='password'
-                        type='text'
+                        type='password'
                         className='peer shadow mb-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400'
                         ref={passwordRef}
                     />
