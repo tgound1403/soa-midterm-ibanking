@@ -4,6 +4,7 @@ import { useHistories } from "../hooks/useHistories";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useDebounce } from "../hooks/useDebounce";
 import moment from "moment";
+import { Link } from "react-router-dom";
 export const HistoryPage = () => {
   const { user } = useAuthContext();
   const { StudentID } = user;
@@ -34,9 +35,9 @@ export const HistoryPage = () => {
       <div className="background lg:h-screen h-screen bg-gradient-to-r from-yellow-300 to-green-400">
         <div className=" px-2 py-6 mb-16 my-0 mx-auto w-11/12 rounded-b-lg bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
           <h1 className="text-4xl  font-bold text-center">
-            <a href="/" className="text-green-600">
+            <Link to={"/"} className="text-green-600">
               i
-            </a>
+            </Link>
             Banking
           </h1>
         </div>
