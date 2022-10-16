@@ -248,7 +248,11 @@ export const TransactionForm = () => {
             <button
               onClick={!error ? handleSendOTP : ""}
               type="submit"
-              className="group relative flex w-full cursor-not-allowed justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-md font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              className={
+                !error
+                  ? "group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-md font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                  : "group relative flex w-full cursor-not-allowed justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-md font-medium text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              }
             >
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 {error ? (
