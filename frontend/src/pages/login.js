@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useLogin } from "../hooks/useLogin";
+import { Link } from "react-router-dom";
 
 export const LoginPage = () => {
   const usernameRef = useRef();
@@ -16,15 +17,15 @@ export const LoginPage = () => {
       <div className="background lg:h-full h-screen bg-gradient-to-r from-yellow-300 to-green-400">
         <div className=" px-2 py-6 my-0 mx-auto w-11/12 rounded-b-lg bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
           <h1 className="text-4xl  font-bold text-center">
-            <a href="/" className="text-green-600">
+            <Link to="/" className="text-green-600">
               i
-            </a>
+            </Link>
             Banking
           </h1>
         </div>
         <form
           onSubmit={handleSubmit}
-          className="login-form my-0 mx-auto lg:mb-24 xl:mt-64 xl:mb-64 mt-12 mb-6 w-11/12 sm:mt-64 sm:mb-40 md:mb-72 lg:mt-10 md:mt-10 sm:w-11/12 md:w-6/12 lg:w-3/12 shadow-lg p-5 ml-6/12 bg-white rounded-lg"
+          className="login-form my-0 mx-auto lg:mb-56 xl:mt-64 xl:mb-64 mt-12 mb-6 w-11/12 sm:mt-64 sm:mb-40 md:mb-72 lg:mt-20 md:mt-64 sm:w-11/12 md:w-6/12 lg:w-3/12 shadow-lg p-5 ml-6/12 bg-white rounded-lg"
         >
           <label className="font-bold text-4xl mb-3 text-green-500">
             Log In
@@ -51,7 +52,7 @@ export const LoginPage = () => {
           <input
             required
             placeholder="password"
-            type="text"
+            type="password"
             className="peer shadow mb-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:border-green-400"
             ref={passwordRef}
           />

@@ -12,9 +12,9 @@ export const useOTP = () => {
         });
         const json = await response.json();
         if (!response.ok) {
-            console.log('send error');
+            console.log('send OTP error :((');
         } else {
-            console.log('send success');
+            console.log('send OTP success <3');
             return json;
         }
     };
@@ -26,6 +26,7 @@ export const useOTP = () => {
             body: JSON.stringify({ OTP }),
         });
         const json = await response.json();
+        console.log(`'verifying OTP successfully <3`)
         return json;
     };
 
