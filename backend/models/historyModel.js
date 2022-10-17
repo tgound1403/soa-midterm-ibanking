@@ -4,24 +4,28 @@ const User = require('./userModel');
 
 const historySchema = new Schema(
     {
-        userID: {
+        Sender: {
             type: String,
             required: true,
         },
-        additionalName: {
+        senderID: {
             type: String,
             required: true,
         },
-        StudentID: {
+        Receiver: {
             type: String,
             require: true,
         },
-        email: {
+        receiverID: {
             type: String,
             required: true,
         },
         amount: {
             type: Number,
+            required: true,
+        },
+        content: {
+            type: String,
             required: true,
         },
     },
@@ -30,27 +34,32 @@ const historySchema = new Schema(
     }
 );
 
-historySchema.statics.appendData = async function (userID, additionalName, StudentID, email, amount) {
-    if (!userID || !additionalName || !StudentID || !email || !amount) {
+historySchema.statics.appendData = async function (Sender, senderID, Receiver, receiverID, amount, content) {
+    if (!Sender || !senderID || !Receiver || !receiverID || !amount || !content) {
         throw Error('All fill must be filled');
     }
 
     //find if this studentID is already exist on UserDB or not
-    const exist = await User.findOne({ StudentID });
-    if (!exist) {
-        throw Error('Invalid StudentID');
+    const senderExist = await User.findOne({ senderID });
+    if (!senderExist) {
+        throw Error('Invalid SenderID');
     }
 
-    const data = await this.create({ userID, additionalName, StudentID, email, amount });
+    const receiverExist = await User.findOne({ receiverID });
+    if (!receiverExist) {
+        throw Error('Invalid ReceiverID');
+    }
+
+    const data = await this.create({ Sender, senderID, Receiver, receiverID, amount, content });
     return data;
 };
 
-historySchema.statics.getUserHistoryTransaction = async function (StudentID) {
-    if (!StudentID) {
-        throw Error('URL must has one userID params');
+historySchema.statics.getUserHistoryTransaction = async function (Sender, receiverID) {
+    if (!Sender || !receiverID) {
+        throw Error('Request body must has Sender and receiverID information');
     }
 
-    const exist = await this.find({ StudentID });
+    const exist = await this.find({ Sender, receiverID });
     if (!exist) {
         throw Error('Invalid userID');
     }

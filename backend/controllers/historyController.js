@@ -2,20 +2,20 @@ const HistoryTransaction = require('../models/historyModel');
 
 //append history data to database
 const postHistoryTransaction = async (req, res) => {
-    const { userID, additionalName, StudentID, email, amount } = req.body;
+    const { Sender, senderID, Receiver, receiverID, amount, content } = req.body;
     try {
-        const data = await HistoryTransaction.appendData(userID, additionalName, StudentID, email, amount);
+        const data = await HistoryTransaction.appendData(Sender, senderID, Receiver, receiverID, amount, content);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
-//get a specific user history, note that this 'id' object is defined in routes
+//get a specific user history
 const getHistoryTransaction = async (req, res) => {
-    const { StudentID } = req.params;
+    const { Sender, receiverID } = req.body;
     try {
-        const data = await HistoryTransaction.getUserHistoryTransaction(StudentID);
+        const data = await HistoryTransaction.getUserHistoryTransaction(Sender, receiverID);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json({ error: error.message });
