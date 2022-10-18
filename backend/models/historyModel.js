@@ -59,7 +59,8 @@ historySchema.statics.getUserHistoryTransaction = async function (Sender, receiv
         throw Error('Request body must has Sender and receiverID information');
     }
 
-    const exist = await this.find({ Sender, receiverID });
+    //response if find one of these objects
+    const exist = await this.find({ $or: [{ Sender }, { receiverID }] });
     if (!exist) {
         throw Error('Invalid userID');
     }
