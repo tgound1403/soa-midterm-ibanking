@@ -139,4 +139,17 @@ userSchema.statics.verifyOTP = async function (OTP) {
     return !exist ? false : true;
 };
 
+userSchema.statics.updateTuition = async function (StudentID, balance, amount) {
+    if (!balance || !amount) {
+        throw Error('All fill must be filled');
+    }
+
+    //update new balance for user
+    const newBalance = balance - amount;
+
+    //update tuition for user
+    const data = this.updateOne({ StudentID }, { $set: { balance: newBalance, amount: 0 } });
+    return data;
+};
+
 module.exports = mongoose.model('User', userSchema);
