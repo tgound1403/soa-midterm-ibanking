@@ -70,7 +70,7 @@ export const TransactionForm = () => {
         <>
             <div className='background h-screen'>
                 <div className=' my-0 w-11/12 mx-auto px-2 py-6 bg-white rounded-b-lg lg:w-3/12 md:w-6/12 sm:w-full shadow-lg'>
-                    <h1 href='/login' className='text-4xl font-bold text-center'>
+                    <h1 className='text-4xl font-bold text-center'>
                         <Link to={'/'} className='text-green-600'>
                             i
                         </Link>
@@ -214,13 +214,9 @@ export const TransactionForm = () => {
                     )}
                     <p>
                         <input type='checkbox' className='rounded text-blue-500' /> I accept with{' '}
-                        <a href='/' className='font-bold italic text-green-500'>
-                            term of uses
-                        </a>
-                        <a href='/'> and </a>
-                        <a href='/' className='font-bold italic text-green-500'>
-                            policy
-                        </a>
+                        <p className='font-bold italic text-green-500'>term of uses</p>
+                        <i> and </i>
+                        <p className='font-bold italic text-green-500'>policy</p>
                     </p>
                     <p></p>
                     <br />

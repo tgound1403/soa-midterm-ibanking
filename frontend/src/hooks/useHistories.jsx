@@ -1,6 +1,10 @@
+import { useAuthContext } from '../hooks/useAuthContext';
 export const useHistories = () => {
-    const getHistories = async (studentID) => {
-        const response = await fetch(`/api/history/${studentID}`);
+    const { user } = useAuthContext();
+    const { additionalName, StudentID } = user;
+
+    const getHistories = async () => {
+        const response = await fetch(`/api/history?Sender=${additionalName}&&receiverID=${StudentID}`);
         const json = await response.json();
         console.log('fetch histories successfully <3');
         return json;

@@ -13,7 +13,7 @@ const postHistoryTransaction = async (req, res) => {
 
 //get a specific user history
 const getHistoryTransaction = async (req, res) => {
-    const { Sender, receiverID } = req.body;
+    const { Sender, receiverID } = req.query;
     try {
         const data = await HistoryTransaction.getUserHistoryTransaction(Sender, receiverID);
         res.status(200).json(data);
