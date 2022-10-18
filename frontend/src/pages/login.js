@@ -71,7 +71,7 @@ export const LoginPage = () => {
           <br />
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-400 w-full px-6 p-2 rounded-md text-white font-bold"
+            className="bg-green-600 w-full px-6 p-2 rounded-md text-white font-bold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:bg-green-700 duration-300"
           >
             {" "}
             Log In{" "}
