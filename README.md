@@ -10,8 +10,8 @@
 
 ### 2. How to use our website?
 - Use one of these account to login and start using:
--- Nguyen Trieu Duong: username: "" , password: ""
--- Trinh Cam Minh: username: "" , password: ""
+  - Nguyen Trieu Duong: username: "" , password: ""
+  - Trinh Cam Minh: username: "" , password: ""
 
 - Type one of these student IDs into student ID field in form to find and get student include tuition information (default when login system will auto set student ID of account logged in for this), others field is automatically filled with data from the database.
 
