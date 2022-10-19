@@ -2,9 +2,17 @@ const HistoryTransaction = require('../models/historyModel');
 
 //append history data to database
 const postHistoryTransaction = async (req, res) => {
-    const { Sender, senderID, Receiver, receiverID, amount, content } = req.body;
+    const { Sender, senderID, Receiver, receiverID, amount, content } =
+        req.body;
     try {
-        const data = await HistoryTransaction.appendData(Sender, senderID, Receiver, receiverID, amount, content);
+        const data = await HistoryTransaction.appendData(
+            Sender,
+            senderID,
+            Receiver,
+            receiverID,
+            amount,
+            content
+        );
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -15,8 +23,12 @@ const postHistoryTransaction = async (req, res) => {
 const getHistoryTransaction = async (req, res) => {
     const { Sender, receiverID } = req.query;
     try {
-        const data = await HistoryTransaction.getUserHistoryTransaction(Sender, receiverID);
-        res.status(200).json(data);
+        const data = await HistoryTransaction.getUserHistoryTransaction(
+            Sender,
+            receiverID
+        );
+        reverseData = data.reverse();
+        res.status(200).json(reverseData);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

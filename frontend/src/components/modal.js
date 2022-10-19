@@ -1,22 +1,76 @@
-import React from 'react';
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
+import { Fragment, useRef, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { Spinner } from './spinner';
+export const Modal = ({ username, amount, studentID }) => {
+    const [open, setOpen] = useState(true);
 
-export const Modal = ({ username }) => {
+    const cancelButtonRef = useRef(null);
+
     return (
-        <>
-            {/* <div className='bg-black opacity-30'>
-                <div className='flex w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 lg:w-4/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg'>
-                    <CheckCircleIcon className='w-10 h-10' />
-                    <h1 className='font-bold text-green-600'>Send</h1>
-                    <p className='text-lg'>Student: {}</p>
-                    <p className='text-lg'>Amount: {}</p>
-                    <button className='rounded-lg'>Back to transaction</button>
+        <Transition.Root show={open} as={Fragment}>
+            <Dialog
+                as="div"
+                className="relative z-10"
+                initialFocus={cancelButtonRef}
+                onClose={setOpen}
+            >
+                <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
+                    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                </Transition.Child>
+
+                <div className="fixed inset-0 z-10 overflow-y-auto">
+                    <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            enterTo="opacity-100 translate-y-0 sm:scale-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        >
+                            <Dialog.Panel className="flex content-center items-center justify-center w-screen h-screen z-10 relative">
+                                {amount != null ? (
+                                    <div className="flex flex-col items-center justify-center z-10 sm:w-11/12 md:w-8/12 lg:w-4/12 2xl:w-3/12 shadow-lg p-5 h-1/3 w-6/12 bg-white rounded-lg">
+                                        <CheckCircleIcon className="w-14 h-14 text-green-600" />
+                                        <h1 className="font-bold text-5xl text-green-600 -mt-2 mb-6">
+                                            Congrats
+                                        </h1>
+                                        <strong className="text-xl">
+                                            {username}
+                                        </strong>
+                                        <p className="text-xl">
+                                            successfully paid tuition for{' '}
+                                            <strong>{studentID}</strong>
+                                        </p>
+                                        <p className="text-xl">
+                                            Amount:{' '}
+                                            <strong>{amount} VND</strong>
+                                        </p>
+                                        <button
+                                            onClick={() => setOpen(false)}
+                                            className="bg-green-600 mt-10 w-1/2 h-1/6 px-6 p-2 rounded-md text-white text-md font-bold transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-105 hover:bg-green-700 duration-300"
+                                        >
+                                            Back to transaction
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <Spinner />
+                                )}
+                            </Dialog.Panel>
+                        </Transition.Child>
+                    </div>
                 </div>
-            </div> */}
-            <div>
-                <h1>Modal</h1>
-                <strong className='text-green-500'>Congrats {username}!!</strong>
-            </div>
-        </>
+            </Dialog>
+        </Transition.Root>
     );
 };
