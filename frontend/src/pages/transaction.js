@@ -1,70 +1,70 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    LockClosedIcon,
-    UserCircleIcon,
-    AcademicCapIcon,
-    BanknotesIcon,
-    ArrowLeftOnRectangleIcon,
-    ClipboardDocumentIcon,
-    CheckBadgeIcon,
-    ExclamationTriangleIcon,
-} from '@heroicons/react/20/solid';
-import { useAuthContext } from '../hooks/useAuthContext';
-import { useLogout } from '../hooks/useLogout';
-import { useDebounce } from '../hooks/useDebounce';
-import { useOTP } from '../hooks/useOTP';
-import { useFetchUser } from '../hooks/useFetchUser';
+  LockClosedIcon,
+  UserCircleIcon,
+  AcademicCapIcon,
+  BanknotesIcon,
+  ArrowLeftOnRectangleIcon,
+  ClipboardDocumentIcon,
+  CheckBadgeIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/react/20/solid";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
+import { useDebounce } from "../hooks/useDebounce";
+import { useOTP } from "../hooks/useOTP";
+import { useFetchUser } from "../hooks/useFetchUser";
 import { useUpdateTuition } from '../hooks/useUpdateTuition';
-const formatCurrency = require('format-currency');
+const formatCurrency = require("format-currency");
 
 export const TransactionForm = () => {
-    const { user } = useAuthContext();
-    //destructuring all the properties from user object
-    const { additionalName, StudentID, email, telephone, balance, amount } = user;
-    const [studentName, setStudentName] = useState(null);
-    const [studentID, setStudentID] = useState(StudentID);
-    const [studentBalance, setStudentBalance] = useState(balance);
-    const [tuitionRequired, setTuitionRequired] = useState(amount);
-    const [error, setError] = useState(false);
-    const [isCorrectOTP, setIsCorrectOTP] = useState(null);
-    const [showInputOTP, setShowInputOTP] = useState(false);
-    const { logout } = useLogout();
-    const { sendOTP, verifyOTP } = useOTP();
-    const { getUser } = useFetchUser();
+  const { user } = useAuthContext();
+  //destructuring all the properties from user object
+  const { additionalName, StudentID, email, telephone, balance, amount } = user;
+  const [studentName, setStudentName] = useState(null);
+  const [studentID, setStudentID] = useState(StudentID);
+  const [studentBalance, setStudentBalance] = useState(balance);
+  const [tuitionRequired, setTuitionRequired] = useState(amount);
+  const [error, setError] = useState(false);
+  const [isCorrectOTP, setIsCorrectOTP] = useState(null);
+  const [showInputOTP, setShowInputOTP] = useState(false);
+  const { logout } = useLogout();
+  const { sendOTP, verifyOTP } = useOTP();
+  const { getUser } = useFetchUser();
     const { updateTuition } = useUpdateTuition();
-    const OTPRef = useRef();
+  const OTPRef = useRef();
 
-    const handleSendOTP = async (e) => {
-        e.preventDefault();
-        setShowInputOTP(true);
-        await sendOTP();
-    };
+  const handleSendOTP = async (e) => {
+    e.preventDefault();
+    setShowInputOTP(true);
+    await sendOTP();
+  };
 
-    const handleVerifyOTP = async (e) => {
-        e.preventDefault();
-        const isOTP = await verifyOTP(OTPRef.current.value);
-        isOTP ? setIsCorrectOTP(true) : setIsCorrectOTP(false);
+  const handleVerifyOTP = async (e) => {
+    e.preventDefault();
+    const isOTP = await verifyOTP(OTPRef.current.value);
+    isOTP ? setIsCorrectOTP(true) : setIsCorrectOTP(false);
         const json = await updateTuition();
         setTuitionRequired(json.amount);
         setStudentBalance(json.balance);
-    };
+  };
 
-    const handleLogout = async (e) => {
-        e.preventDefault();
-        await logout();
-    };
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    await logout();
+  };
 
-    //fetch API to get user information
-    const fetchUser = async () => {
-        const json = await getUser(studentID);
-        //incase bad request then json.error will be used
-        //same to 0
-        setStudentName(json.additionalName || json.error);
-        setTuitionRequired(json.amount);
-        setStudentBalance(json.balance);
-    };
-    useDebounce(fetchUser, 1000, [studentID]);
+  //fetch API to get user information
+  const fetchUser = async () => {
+    const json = await getUser(studentID);
+    //incase bad request then json.error will be used
+    //same to 0
+    setStudentName(json.additionalName || json.error);
+    setTuitionRequired(json.amount);
+    setStudentBalance(json.balance);
+  };
+  useDebounce(fetchUser, 1000, [studentID]);
 
     //compare if balance is less tuition required
     useEffect(() => {
