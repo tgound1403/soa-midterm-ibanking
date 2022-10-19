@@ -68,7 +68,7 @@ export const TransactionForm = () => {
 
   return (
     <>
-      <div className="background h-screen">
+      <div className="background 2xl:h-screen h-full pb-4">
         <div className=" my-0 w-11/12 mx-auto px-2 py-6 bg-white rounded-b-lg lg:w-3/12 md:w-6/12 sm:w-full shadow-lg">
           <h1 className="text-4xl font-bold text-center">
             <Link to={"/"} className="text-green-600">
@@ -77,15 +77,15 @@ export const TransactionForm = () => {
             Banking
           </h1>
         </div>
-        <form className="transaction-form w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 lg:w-4/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg">
+        <form className="transaction-form w-11/12 my-0 mx-auto mt-4 mb-16 sm:w-11/12 sm:mt-40 sm:mb-72 md:w-8/12 xl:w-5/12 2xl:w-4/12 lg:w-6/12 xl:mt-10 xl:mb-10  shadow-lg p-5 sm:px-6 lg:px-8 ml-6/12 bg-white rounded-lg">
           <div className="flex justify-between mb-2">
             <ArrowLeftOnRectangleIcon
               onClick={handleLogout}
-              className=" h-8 w-8 cursor-pointer text-red-500 mr-2"
+              className=" h-8 w-8 cursor-pointer text-red-500 mr-2 hover:text-red-400 duration-200"
             />
             <Link to={"/history"}>
               <ClipboardDocumentIcon
-                className="h-8 w-8 cursor-pointer text-yellow-500 mr-2"
+                className="h-8 w-8 cursor-pointer text-yellow-500 mr-2 hover:text-yellow-400 duration-200"
                 aria-hidden="true"
               />
             </Link>
@@ -247,8 +247,8 @@ export const TransactionForm = () => {
               type="submit"
               className={
                 !error
-                  ? "group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-md font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                  : "group relative flex w-full cursor-not-allowed justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-md font-medium text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                  ? "group relative flex w-full justify-center rounded-md border bg-green-600 py-2 px-4 text-md font-medium text-white hover:bg-green-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 duration-200"
+                  : "group relative flex w-full cursor-not-allowed justify-center rounded-md border border-green-600 bg-green-600 py-2 px-4 text-md font-medium text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
               }
             >
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
