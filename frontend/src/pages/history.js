@@ -33,8 +33,8 @@ export const HistoryPage = () => {
 
   return (
     <>
-      <div className="background lg:h-screen h-screen bg-gradient-to-r from-yellow-300 to-green-400">
-        <div className=" px-2 py-6 mb-16 my-0 mx-auto w-11/12 rounded-b-lg bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
+      <div className="background pb-4 2xl:h-screen h-full bg-gradient-to-r from-yellow-300 to-green-400">
+        <div className=" px-2 py-6 mb-16 my-0 mx-auto w-11/12 rounded-b-lg bg-white xl:w-2/12 lg:w-4/12 md:w-4/12 sm:w-full shadow-lg">
           <h1 className="text-4xl  font-bold text-center">
             <Link to={"/"} className="text-green-600">
               i
@@ -42,10 +42,12 @@ export const HistoryPage = () => {
             Banking
           </h1>
         </div>
-        <div className="w-11/12 mt-4 sm:w-11/12 md:w-8/12 lg:w-4/12 my-0 mx-auto ">
+        <div className="w-11/12 p-4 mt-4 sm:w-11/12 md:w-8/12 lg:w-6/12 xl:w-4/12 my-0 mx-auto ">
           <Link to="/transaction">
-            <ArrowLeftIcon className="h-12 w-12 mb-6 rounded-full hover:bg-green-600 hover:text-white animate-bounce bg-white p-1 shadow-lg duration-300 " />
+            <ArrowLeftIcon className="h-12 w-12 fixed rounded-full hover:bg-green-600 hover:text-white animate-bounce bg-white p-1 shadow-lg duration-300 " />
           </Link>
+        </div>
+        <div className="w-11/12 overflow-auto mt-10 scrollbar-thin scrollbar-thumb-white scrollbar-track-green-600 h-3/4 p-4 sm:w-11/12 md:w-8/12 lg:w-6/12 xl:w-4/12 my-0 mx-auto ">
           {history &&
             history.map((item, index) => {
               return (
@@ -68,8 +70,8 @@ export const HistoryPage = () => {
                     <CheckCircleIcon
                       className={
                         checkSender(item.senderID)
-                          ? "h-9 w-9 mt-1 ml-1 text-green-600 "
-                          : "h-9 w-9 mt-1 ml-1 text-red-600 "
+                          ? "h-9 w-9 mt-1 ml-2 text-green-600 "
+                          : "h-9 w-9 mt-1 ml-2 text-red-600 "
                       }
                       aria-hidden="true"
                     />
@@ -80,10 +82,10 @@ export const HistoryPage = () => {
                   </p>
                   <div className="flex flex-wrap"></div>
                   <div className="flex flex-wrap">
-                    <p className="md:w-1/2 font-bold text-xl">
+                    <p className="md:w-2/3 font-bold text-xl">
                       Sender: {item.Sender}
                     </p>
-                    <p className="md:w-1/2 font-bold text-xl">
+                    <p className="md:w-1/3 font-bold text-xl">
                       Student: {item.receiverID}
                     </p>
                   </div>
@@ -100,8 +102,9 @@ export const HistoryPage = () => {
                         : "font-bold inline-block text-xl text-red-600"
                     }
                   >
-                    {checkSender(item.senderID) &&
-                      "-" + formatter.format(item.amount)}
+                    {checkSender(item.senderID)
+                      ? "-" + formatter.format(item.amount)
+                      : formatter.format(item.amount)}
                   </p>
                 </div>
               );
