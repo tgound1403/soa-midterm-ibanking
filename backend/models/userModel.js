@@ -148,8 +148,9 @@ userSchema.statics.updateTuition = async function (StudentID, balance, amount) {
     const newBalance = balance - amount;
 
     //update tuition for user
-    const data = this.updateOne({ StudentID }, { $set: { balance: newBalance, amount: 0 } });
-    return data;
+    await this.findOneAndUpdate({ StudentID }, { $set: { balance: newBalance, amount: 0 } });
+    const newUserData = await this.findOne({ StudentID });
+    return newUserData;
 };
 
 module.exports = mongoose.model('User', userSchema);
