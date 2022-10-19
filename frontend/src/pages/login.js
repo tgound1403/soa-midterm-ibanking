@@ -14,7 +14,7 @@ export const LoginPage = () => {
 
   return (
     <>
-      <div className="background lg:h-full h-screen bg-gradient-to-r from-yellow-300 to-green-400">
+      <div className="background 2xl:h-screen h-full bg-gradient-to-r from-yellow-300 to-green-400">
         <div className=" px-2 py-6 my-0 mx-auto w-11/12 rounded-b-lg bg-white lg:w-2/12 md:w-4/12 sm:w-full shadow-lg">
           <h1 className="text-4xl  font-bold text-center">
             <Link to="/" className="text-green-600">
@@ -25,7 +25,7 @@ export const LoginPage = () => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="login-form my-0 mx-auto lg:mb-56 xl:mt-64 xl:mb-64 mt-12 mb-6 w-11/12 sm:mt-64 sm:mb-40 md:mb-72 lg:mt-20 md:mt-64 sm:w-11/12 md:w-6/12 lg:w-3/12 shadow-lg p-5 ml-6/12 bg-white rounded-lg"
+          className="login-form my-0 mx-auto lg:mb-56 2xl:mt-64 2xl:mb-64 mt-12 mb-6 w-11/12 sm:mt-64 sm:mb-40 md:mb-72 lg:mt-20 md:mt-64 sm:w-11/12 md:w-6/12 lg:w-3/12 shadow-lg p-5 ml-6/12 bg-white rounded-lg"
         >
           <label className="font-bold text-4xl mb-3 text-green-500">
             Log In
