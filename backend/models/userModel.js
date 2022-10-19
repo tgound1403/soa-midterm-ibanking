@@ -117,12 +117,12 @@ userSchema.statics.getUserInfo = async function (StudentID) {
     return exist;
 };
 
-userSchema.statics.sendOTP = async function (email) {
-    const { OTP } = await this.findOne({ email });
+userSchema.statics.sendOTP = async function (email, content) {
+    // const { OTP } = await this.findOne({ email });
     try {
         const response = await sendEmail({
             to: email,
-            OTP,
+            content,
         });
         console.log('Mail sended successfully <3');
         console.log(response);

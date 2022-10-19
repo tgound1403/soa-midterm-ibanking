@@ -51,9 +51,9 @@ const getUser = async (req, res) => {
 };
 
 const sendOTPByEmail = async (req, res) => {
-    const { email } = req.body;
+    const { email, content } = req.body;
     try {
-        const isVerify = await User.sendOTP(email);
+        const isVerify = await User.sendOTP(email, content);
         res.status(200).json(isVerify);
     } catch (error) {
         res.status(400).json({ error: error.message });

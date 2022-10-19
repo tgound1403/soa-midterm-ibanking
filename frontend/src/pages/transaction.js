@@ -1,70 +1,83 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  LockClosedIcon,
-  UserCircleIcon,
-  AcademicCapIcon,
-  BanknotesIcon,
-  ArrowLeftOnRectangleIcon,
-  ClipboardDocumentIcon,
-  CheckBadgeIcon,
-  ExclamationTriangleIcon,
-} from "@heroicons/react/20/solid";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useLogout } from "../hooks/useLogout";
-import { useDebounce } from "../hooks/useDebounce";
-import { useOTP } from "../hooks/useOTP";
-import { useFetchUser } from "../hooks/useFetchUser";
+    LockClosedIcon,
+    UserCircleIcon,
+    AcademicCapIcon,
+    BanknotesIcon,
+    ArrowLeftOnRectangleIcon,
+    ClipboardDocumentIcon,
+    CheckBadgeIcon,
+    ExclamationTriangleIcon,
+} from '@heroicons/react/20/solid';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
+import { useDebounce } from '../hooks/useDebounce';
+import { useEmail } from '../hooks/useEmail';
+import { useOTP } from '../hooks/useOTP';
+import { useFetchUser } from '../hooks/useFetchUser';
 import { useUpdateTuition } from '../hooks/useUpdateTuition';
-const formatCurrency = require("format-currency");
+import { useHistories } from '../hooks/useHistories';
+import { Modal } from '../components/modal';
+const formatCurrency = require('format-currency');
 
 export const TransactionForm = () => {
-  const { user } = useAuthContext();
-  //destructuring all the properties from user object
-  const { additionalName, StudentID, email, telephone, balance, amount } = user;
-  const [studentName, setStudentName] = useState(null);
-  const [studentID, setStudentID] = useState(StudentID);
-  const [studentBalance, setStudentBalance] = useState(balance);
-  const [tuitionRequired, setTuitionRequired] = useState(amount);
-  const [error, setError] = useState(false);
-  const [isCorrectOTP, setIsCorrectOTP] = useState(null);
-  const [showInputOTP, setShowInputOTP] = useState(false);
-  const { logout } = useLogout();
-  const { sendOTP, verifyOTP } = useOTP();
-  const { getUser } = useFetchUser();
+    const { user } = useAuthContext();
+    //destructuring all the properties from user object
+    const { additionalName, StudentID, email, telephone, balance, amount, OTP } = user;
+    const [studentName, setStudentName] = useState(null);
+    const [studentID, setStudentID] = useState(StudentID);
+    const [studentBalance, setStudentBalance] = useState(balance);
+    const [tuitionRequired, setTuitionRequired] = useState(amount);
+    const [error, setError] = useState(false);
+    const [isCorrectOTP, setIsCorrectOTP] = useState(false);
+    const [showInputOTP, setShowInputOTP] = useState(false);
+    const [isShowModal, setIsShowModal] = useState(false);
+    const { logout } = useLogout();
+    const { sendEmail } = useEmail();
+    const { verifyOTP } = useOTP();
+    const { getUser } = useFetchUser();
     const { updateTuition } = useUpdateTuition();
-  const OTPRef = useRef();
+    const { postHistories } = useHistories();
+    const OTPRef = useRef();
 
-  const handleSendOTP = async (e) => {
-    e.preventDefault();
-    setShowInputOTP(true);
-    await sendOTP();
-  };
+    const handleSendOTP = async (e) => {
+        e.preventDefault();
+        setShowInputOTP(true);
+        await sendEmail(OTP);
+    };
 
-  const handleVerifyOTP = async (e) => {
-    e.preventDefault();
-    const isOTP = await verifyOTP(OTPRef.current.value);
-    isOTP ? setIsCorrectOTP(true) : setIsCorrectOTP(false);
-        const json = await updateTuition();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const isOTP = await verifyOTP(OTPRef.current.value);
+        if (isOTP) {
+            setIsCorrectOTP(true);
+            const json = await updateTuition();
+            await sendEmail(`Congrats ${additionalName} you just have done your tuition successfully`);
+            await postHistories(studentName, studentID, tuitionRequired);
+            setTuitionRequired(json.amount);
+            setStudentBalance(json.balance);
+            setIsShowModal(true);
+        } else {
+            setIsCorrectOTP(false);
+        }
+    };
+
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        await logout();
+    };
+
+    //fetch API to get user information
+    const fetchUser = async () => {
+        const json = await getUser(studentID);
+        //incase bad request then json.error will be used
+        //same to 0
+        setStudentName(json.additionalName || json.error);
         setTuitionRequired(json.amount);
         setStudentBalance(json.balance);
-  };
-
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    await logout();
-  };
-
-  //fetch API to get user information
-  const fetchUser = async () => {
-    const json = await getUser(studentID);
-    //incase bad request then json.error will be used
-    //same to 0
-    setStudentName(json.additionalName || json.error);
-    setTuitionRequired(json.amount);
-    setStudentBalance(json.balance);
-  };
-  useDebounce(fetchUser, 1000, [studentID]);
+    };
+    useDebounce(fetchUser, 1000, [studentID]);
 
     //compare if balance is less tuition required
     useEffect(() => {
@@ -224,7 +237,7 @@ export const TransactionForm = () => {
                     <br />
                     <div>
                         <button
-                            onClick={!error ? handleSendOTP : ''}
+                            onClick={!error ? handleSendOTP : (e) => e.preventDefault()}
                             type='submit'
                             className={
                                 !error
@@ -249,12 +262,12 @@ export const TransactionForm = () => {
                                 className='shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight '
                             />
                             <button
-                                onClick={handleVerifyOTP}
+                                onClick={handleSubmit}
                                 type='submit'
                                 className='group relative flex w-full justify-center mt-2 rounded-md border border-transparent bg-green-600 py-2 px-4 text-md font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
                             >
                                 <span className='absolute inset-y-0 left-0 flex items-center pl-3'></span>
-                                Verify
+                                Submit
                             </button>
                             {isCorrectOTP ? (
                                 <h1 className='text-green-500'>Correct OTP</h1>
@@ -263,6 +276,7 @@ export const TransactionForm = () => {
                             )}
                         </>
                     )}
+                    {isShowModal && <Modal username={additionalName} />}
                 </form>
             </div>
         </>
