@@ -27,7 +27,7 @@ const getHistoryTransaction = async (req, res) => {
             Sender,
             receiverID
         );
-        reverseData = data.reverse();
+        const reverseData = data.reverse();
         res.status(200).json(reverseData);
     } catch (error) {
         res.status(400).json({ error: error.message });

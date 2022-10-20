@@ -15,6 +15,7 @@ const signupUser = async (req, res) => {
         telephone,
         balance,
         amount,
+        content,
     } = req.body;
 
     try {
@@ -25,7 +26,8 @@ const signupUser = async (req, res) => {
             email,
             telephone,
             balance,
-            amount
+            amount,
+            content
         );
         //create token for each user
         const token = await createToken(user._id);
@@ -49,6 +51,7 @@ const loginUser = async (req, res) => {
             balance: user.balance,
             amount: user.amount,
             OTP: user.OTP,
+            content: user.content,
             token,
         });
     } catch (error) {

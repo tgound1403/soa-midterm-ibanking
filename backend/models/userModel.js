@@ -43,6 +43,10 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        content: {
+            type: String,
+            required: true,
+        },
     },
     { timestamps: true }
 );
@@ -54,7 +58,8 @@ userSchema.statics.signup = async function (
     email,
     telephone,
     balance,
-    amount
+    amount,
+    content
 ) {
     if (
         !additionalName ||
@@ -63,7 +68,8 @@ userSchema.statics.signup = async function (
         !email ||
         !telephone ||
         !balance ||
-        !amount
+        !amount ||
+        !content
     ) {
         throw Error('All fill must be filled');
     }
@@ -98,6 +104,7 @@ userSchema.statics.signup = async function (
         balance,
         amount,
         OTP: otpGenerated,
+        content,
     });
 
     return user;

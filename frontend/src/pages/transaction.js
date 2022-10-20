@@ -25,8 +25,7 @@ const formatCurrency = require('format-currency');
 export const TransactionForm = () => {
     const { user } = useAuthContext();
     //destructuring all the properties from user object
-    const { additionalName, StudentID, email, telephone, balance, amount } =
-        user;
+    const { additionalName, StudentID, email, telephone, balance, amount, content } = user;
     const [studentName, setStudentName] = useState(null);
     const [studentID, setStudentID] = useState(StudentID);
     const [studentBalance, setStudentBalance] = useState(balance);
@@ -37,6 +36,7 @@ export const TransactionForm = () => {
     const [isShowModal, setIsShowModal] = useState(false);
     const [dOTP, setOTP] = useState('');
     const [damount, setdAmount] = useState();
+    const [tuitionContent, setTuitionContent] = useState(content);
     const { logout } = useLogout();
     const { sendEmail } = useEmail();
     const { verifyOTP, generateOTP } = useOTP();
@@ -58,19 +58,12 @@ export const TransactionForm = () => {
         const isOTP = await verifyOTP(OTPRef.current.value);
         if (isOTP) {
             setIsCorrectOTP(true);
-            const json = await updateTuition(
-                studentID,
-                studentBalance,
-                tuitionRequired
-            );
+            const { amount, balance } = await updateTuition(studentID, studentBalance, tuitionRequired);
             setIsShowModal(true);
             await postHistories(studentName, studentID, tuitionRequired);
-            console.log(json);
-            setTuitionRequired(json.amount);
-            setStudentBalance(json.balance);
-            await sendEmail(
-                `Congrats ${additionalName} you just have done your tuition successfully`
-            );
+            setTuitionRequired(amount);
+            setStudentBalance(balance);
+            await sendEmail(`Congrats ${additionalName} you just have done your tuition successfully`);
         } else {
             setIsCorrectOTP(false);
         }
@@ -83,13 +76,12 @@ export const TransactionForm = () => {
 
     //fetch API to get user information
     const fetchUser = async () => {
-        const json = await getUser(studentID);
-        //incase bad request then json.error will be used
-        //same to 0
-        setStudentName(json.additionalName || json.error);
-        setTuitionRequired(json.amount);
-        setStudentBalance(json.balance);
-        setdAmount(json.amount);
+        const { additionalName, amount, balance, error, content } = await getUser(studentID);
+        setStudentName(additionalName || error);
+        setTuitionRequired(amount);
+        setStudentBalance(balance);
+        setTuitionContent(content);
+        setdAmount(amount);
     };
     useDebounce(fetchUser, 1000, [studentID]);
 
@@ -101,13 +93,7 @@ export const TransactionForm = () => {
     return (
         <>
             <div className="background 2xl:h-screen 2xl:pb-0 h-full pb-4 relative">
-                {isShowModal && (
-                    <Modal
-                        username={additionalName}
-                        amount={damount}
-                        studentID={studentID}
-                    />
-                )}
+                {isShowModal && <Modal username={additionalName} amount={damount} studentID={studentID} />}
 
                 <div className=" my-0 w-11/12 mx-auto px-2 py-6 bg-white rounded-b-lg lg:w-3/12 md:w-6/12 sm:w-full shadow-lg">
                     <h1 className="text-4xl font-bold text-center">
@@ -132,19 +118,12 @@ export const TransactionForm = () => {
                             </Link>
                         </div>
                         <div className="flex mb-1">
-                            <UserCircleIcon
-                                className="h-9 w-9 text-green-600 mr-2"
-                                aria-hidden="true"
-                            />
-                            <label className="text-3xl font-bold text-green-600">
-                                Sender
-                            </label>
+                            <UserCircleIcon className="h-9 w-9 text-green-600 mr-2" aria-hidden="true" />
+                            <label className="text-3xl font-bold text-green-600">Sender</label>
                         </div>
                         <div className="flex flex-wrap">
                             <div className="w-full md:w-2/3 px-2 md:mb-0">
-                                <label className="italic block text-gray-700 text-md ">
-                                    Fullname
-                                </label>
+                                <label className="italic block text-gray-700 text-md ">Fullname</label>
                                 <input
                                     style={{ cursor: 'not-allowed' }}
                                     disabled
@@ -155,9 +134,7 @@ export const TransactionForm = () => {
                                 />
                             </div>
                             <div className="w-full md:w-1/3 px-2 md:mb-0">
-                                <label className="italic block text-gray-700 text-md ">
-                                    Phone number
-                                </label>
+                                <label className="italic block text-gray-700 text-md ">Phone number</label>
                                 <input
                                     style={{ cursor: 'not-allowed' }}
                                     disabled
@@ -169,9 +146,7 @@ export const TransactionForm = () => {
                             </div>
                         </div>
                         <div className="px-2">
-                            <label className="italic block text-gray-700 text-md mt-1">
-                                Email
-                            </label>
+                            <label className="italic block text-gray-700 text-md mt-1">Email</label>
                             <input
                                 style={{ cursor: 'not-allowed' }}
                                 disabled
@@ -183,13 +158,8 @@ export const TransactionForm = () => {
                         </div>
                         <br />
                         <div className="flex mb-1">
-                            <AcademicCapIcon
-                                className="h-9 w-9 text-green-600 mr-2"
-                                aria-hidden="true"
-                            />
-                            <label className="text-3xl font-bold text-green-600">
-                                Tuition
-                            </label>
+                            <AcademicCapIcon className="h-9 w-9 text-green-600 mr-2" aria-hidden="true" />
+                            <label className="text-3xl font-bold text-green-600">Tuition</label>
                         </div>
                         <div className="flex flex-wrap">
                             <div className="w-full md:w-1/3 px-2 md:mb-0">
@@ -200,9 +170,7 @@ export const TransactionForm = () => {
                                     required
                                     type="text"
                                     className="shadow appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight "
-                                    onChange={(e) =>
-                                        setStudentID(e.target.value)
-                                    }
+                                    onChange={(e) => setStudentID(e.target.value)}
                                     value={studentID || StudentID}
                                 />
                             </div>
@@ -229,15 +197,21 @@ export const TransactionForm = () => {
                                 value={formatCurrency(tuitionRequired)}
                             />
                         </div>
+                        <div className="px-2">
+                            <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mt-1">
+                                Content
+                            </label>
+                            <input
+                                disabled
+                                type="text"
+                                className="shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight "
+                                value={tuitionContent}
+                            />
+                        </div>
                         <br />
                         <div className="flex mb-1">
-                            <BanknotesIcon
-                                className="h-9 w-9 text-green-600 mr-2"
-                                aria-hidden="true"
-                            />
-                            <label className="text-3xl font-bold text-green-600">
-                                Transaction
-                            </label>
+                            <BanknotesIcon className="h-9 w-9 text-green-600 mr-2" aria-hidden="true" />
+                            <label className="text-3xl font-bold text-green-600">Transaction</label>
                         </div>
                         <div className="flex flex-wrap">
                             <div className="w-full md:w-1/2 px-2 md:mb-0">
@@ -266,40 +240,24 @@ export const TransactionForm = () => {
                         {error ? (
                             <div className="flex my-2">
                                 <ExclamationTriangleIcon className="h-6 w-6 cursor-pointer text-red-500" />
-                                <em className="ml-2 text-red-500">
-                                    Your balance is less than tuition required!
-                                </em>
+                                <em className="ml-2 text-red-500">Your balance is less than tuition required!</em>
                             </div>
                         ) : (
                             <div className="flex my-2">
                                 <CheckBadgeIcon className="h-6 w-6 cursor-pointer text-green-500" />
-                                <em className="ml-2 text-green-500">
-                                    All information accepted!
-                                </em>
+                                <em className="ml-2 text-green-500">All information accepted!</em>
                             </div>
                         )}
                         <div>
-                            <input
-                                type="checkbox"
-                                className="rounded text-blue-500"
-                            />{' '}
-                            I accept with{' '}
-                            <p className="inline-block font-bold italic text-green-500">
-                                term of uses
-                            </p>
+                            <input type="checkbox" className="rounded text-blue-500" /> I accept with{' '}
+                            <p className="inline-block font-bold italic text-green-500">term of uses</p>
                             <i> and </i>
-                            <p className="inline-block font-bold italic text-green-500">
-                                policy
-                            </p>
+                            <p className="inline-block font-bold italic text-green-500">policy</p>
                         </div>
                         <br />
                         <div>
                             <button
-                                onClick={
-                                    !error
-                                        ? handleSendOTP
-                                        : (e) => e.preventDefault()
-                                }
+                                onClick={!error ? handleSendOTP : (e) => e.preventDefault()}
                                 type="submit"
                                 className={
                                     !error
@@ -320,9 +278,7 @@ export const TransactionForm = () => {
                         </div>
                         {showInputOTP && (
                             <>
-                                <label className="italic block text-gray-700 text-md">
-                                    OTP
-                                </label>
+                                <label className="italic block text-gray-700 text-md">OTP</label>
                                 <input
                                     ref={OTPRef}
                                     required
@@ -340,13 +296,9 @@ export const TransactionForm = () => {
                                 {dOTP === '' ? (
                                     ''
                                 ) : isCorrectOTP ? (
-                                    <h1 className="text-green-500">
-                                        Correct OTP
-                                    </h1>
+                                    <h1 className="text-green-500">Correct OTP</h1>
                                 ) : (
-                                    <h1 className="text-red-500">
-                                        Incorrect OTP!
-                                    </h1>
+                                    <h1 className="text-red-500">Incorrect OTP!</h1>
                                 )}
                             </>
                         )}
