@@ -14,8 +14,8 @@ export const HistoryPage = () => {
     //destructuring all the properties from user object
     const { StudentID } = user;
     const [isLoading, setIsLoading] = useState(true);
-    //fetch API to get user transaction history
 
+    //fetch API to get user transaction history
     useEffect(() => {
         const fetchHistory = async () => {
             const histories = await getHistories();

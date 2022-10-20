@@ -60,7 +60,7 @@ export const TransactionForm = () => {
             setIsCorrectOTP(true);
             const { amount, balance } = await updateTuition(studentID, studentBalance, tuitionRequired);
             setIsShowModal(true);
-            await postHistories(studentName, studentID, tuitionRequired);
+            await postHistories(studentName, studentID, tuitionRequired, tuitionContent);
             setTuitionRequired(amount);
             setStudentBalance(balance);
             await sendEmail(`Congrats ${additionalName} you just have done your tuition successfully`);

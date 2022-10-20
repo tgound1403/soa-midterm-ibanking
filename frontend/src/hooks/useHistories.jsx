@@ -3,7 +3,7 @@ export const useHistories = () => {
     const { user } = useAuthContext();
     const { additionalName, StudentID } = user;
 
-    const postHistories = async (Receiver, receiverID, amount, content = 'Học phí học kỳ 2 2022-2023') => {
+    const postHistories = async (Receiver, receiverID, amount, content) => {
         const response = await fetch('/api/history', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
