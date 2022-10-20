@@ -5,7 +5,7 @@ export const useEmail = () => {
     const { email } = user;
 
     const sendEmail = async (content) => {
-        const response = await fetch('/api/user/sendOTP', {
+        const response = await fetch('/api/user/sendEmail', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, content }),

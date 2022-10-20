@@ -2,9 +2,10 @@ const {
     loginUser,
     signupUser,
     getUser,
-    sendOTPByEmail,
+    sendMessageByEmail,
     verifyUserOTP,
     updateUserTuition,
+    updateOTP,
 } = require('../controllers/userController');
 const express = require('express');
 const router = express.Router();
@@ -15,10 +16,12 @@ router.post('/signup', signupUser);
 
 router.post('/login', loginUser);
 
-router.post('/sendOTP', sendOTPByEmail);
+router.post('/sendEmail', sendMessageByEmail);
 
 router.post('/verifyOTP', verifyUserOTP);
 
 router.put('/updateTuition', updateUserTuition);
+
+router.put('/resetOTP/:StudentID', updateOTP);
 
 module.exports = router;

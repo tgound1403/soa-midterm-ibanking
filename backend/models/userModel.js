@@ -47,8 +47,24 @@ const userSchema = new Schema(
     { timestamps: true }
 );
 
-userSchema.statics.signup = async function (additionalName, password, StudentID, email, telephone, balance, amount) {
-    if (!additionalName || !password || !StudentID || !email || !telephone || !balance || !amount) {
+userSchema.statics.signup = async function (
+    additionalName,
+    password,
+    StudentID,
+    email,
+    telephone,
+    balance,
+    amount
+) {
+    if (
+        !additionalName ||
+        !password ||
+        !StudentID ||
+        !email ||
+        !telephone ||
+        !balance ||
+        !amount
+    ) {
         throw Error('All fill must be filled');
     }
 
@@ -117,8 +133,20 @@ userSchema.statics.getUserInfo = async function (StudentID) {
     return exist;
 };
 
-userSchema.statics.sendOTP = async function (email, content) {
-    // const { OTP } = await this.findOne({ email });
+userSchema.statics.resetOTP = async function (StudentID) {
+    if (!StudentID) {
+        throw Error('URL must have studentID');
+    }
+
+    const newOTP = await generateOTP();
+    //update OTP
+    await this.findOneAndUpdate({ StudentID }, { OTP: newOTP });
+    //return the new OTP
+    const data = await this.findOne({ StudentID }).select('-_id OTP');
+    return data;
+};
+
+userSchema.statics.sendByEmail = async function (email, content) {
     try {
         const response = await sendEmail({
             to: email,
@@ -147,10 +175,14 @@ userSchema.statics.updateTuition = async function (StudentID, balance, amount) {
     //update new balance for user
     const newBalance = balance - amount;
 
-    //update tuition for user
-    await this.findOneAndUpdate({ StudentID }, { $set: { balance: newBalance, amount: 0 } });
-    const newUserData = await this.findOne({ StudentID });
-    return newUserData;
+    //update tuition and balance for user
+    await this.findOneAndUpdate(
+        { StudentID },
+        { $set: { balance: newBalance, amount: 0 } }
+    );
+    //return new tuition and new balance for user
+    const data = await this.findOne({ StudentID });
+    return data;
 };
 
 module.exports = mongoose.model('User', userSchema);

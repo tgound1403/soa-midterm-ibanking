@@ -7,10 +7,26 @@ const createToken = (_id) => {
 };
 
 const signupUser = async (req, res) => {
-    const { additionalName, password, StudentID, email, telephone, balance, amount } = req.body;
+    const {
+        additionalName,
+        password,
+        StudentID,
+        email,
+        telephone,
+        balance,
+        amount,
+    } = req.body;
 
     try {
-        const user = await User.signup(additionalName, password, StudentID, email, telephone, balance, amount);
+        const user = await User.signup(
+            additionalName,
+            password,
+            StudentID,
+            email,
+            telephone,
+            balance,
+            amount
+        );
         //create token for each user
         const token = await createToken(user._id);
         res.status(200).json({ user, token });
@@ -50,11 +66,21 @@ const getUser = async (req, res) => {
     }
 };
 
-const sendOTPByEmail = async (req, res) => {
+const sendMessageByEmail = async (req, res) => {
     const { email, content } = req.body;
     try {
-        const isVerify = await User.sendOTP(email, content);
+        const isVerify = await User.sendByEmail(email, content);
         res.status(200).json(isVerify);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+const updateOTP = async (req, res) => {
+    const { StudentID } = req.params;
+    try {
+        const data = await User.resetOTP(StudentID);
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -84,7 +110,8 @@ module.exports = {
     loginUser,
     signupUser,
     getUser,
-    sendOTPByEmail,
+    sendMessageByEmail,
+    updateOTP,
     verifyUserOTP,
     updateUserTuition,
 };
