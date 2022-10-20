@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
     LockClosedIcon,
     UserCircleIcon,
@@ -79,10 +79,10 @@ export const TransactionForm = () => {
     };
     useDebounce(fetchUser, 1000, [studentID]);
 
-  //compare if balance is less tuition required
-  useEffect(() => {
-    studentBalance < tuitionRequired ? setError(true) : setError(false);
-  }, [studentName, studentBalance, tuitionRequired]);
+    //compare if balance is less tuition required
+    useEffect(() => {
+        studentBalance < tuitionRequired ? setError(true) : setError(false);
+    }, [studentName, studentBalance, tuitionRequired]);
 
     return (
         <>
