@@ -7,28 +7,10 @@ const createToken = (_id) => {
 };
 
 const signupUser = async (req, res) => {
-    const {
-        additionalName,
-        password,
-        StudentID,
-        email,
-        telephone,
-        balance,
-        amount,
-        content,
-    } = req.body;
+    const { additionalName, password, StudentID, email, telephone, balance, amount, content } = req.body;
 
     try {
-        const user = await User.signup(
-            additionalName,
-            password,
-            StudentID,
-            email,
-            telephone,
-            balance,
-            amount,
-            content
-        );
+        const user = await User.signup(additionalName, password, StudentID, email, telephone, balance, amount, content);
         //create token for each user
         const token = await createToken(user._id);
         res.status(200).json({ user, token });
