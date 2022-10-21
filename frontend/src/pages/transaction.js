@@ -93,7 +93,6 @@ export const TransactionForm = () => {
         <>
             <div className='background 2xl:h-screen 2xl:pb-0 h-full pb-4 relative'>
                 {isShowModal && <Modal username={additionalName} amount={damount} studentID={studentID} />}
-
                 <div className=' my-0 w-11/12 mx-auto px-2 py-6 bg-white rounded-b-lg lg:w-3/12 md:w-6/12 sm:w-full shadow-lg'>
                     <h1 className='text-4xl font-bold text-center'>
                         <Link to={'/'} className='text-green-600'>
