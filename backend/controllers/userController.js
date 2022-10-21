@@ -82,9 +82,9 @@ const verifyUserOTP = async (req, res) => {
 };
 
 const updateUserTuition = async (req, res) => {
-    const { StudentID, balance, amount } = req.body;
+    const { SenderID, ReceiverID, balance, amount } = req.body;
     try {
-        const user = await User.updateTuition(StudentID, balance, amount);
+        const user = await User.updateTuition(SenderID, ReceiverID, balance, amount);
         res.status(200).json(user);
     } catch (error) {
         res.status(400).json({ error: error.message });

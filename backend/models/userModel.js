@@ -48,7 +48,7 @@ const userSchema = new Schema(
             required: true,
         },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 userSchema.statics.signup = async function (
@@ -59,18 +59,9 @@ userSchema.statics.signup = async function (
     telephone,
     balance,
     amount,
-    content
+    content,
 ) {
-    if (
-        !additionalName ||
-        !password ||
-        !StudentID ||
-        !email ||
-        !telephone ||
-        !balance ||
-        !amount ||
-        !content
-    ) {
+    if (!additionalName || !password || !StudentID || !email || !telephone || !balance || !amount || !content) {
         throw Error('All fill must be filled');
     }
 
@@ -149,7 +140,7 @@ userSchema.statics.resetOTP = async function (StudentID) {
     //update OTP
     await this.findOneAndUpdate({ StudentID }, { OTP: newOTP });
     //return the new OTP
-    const data = await this.findOne({ StudentID }).select('-_id OTP');
+    const data = await this.findOne({ StudentID }).select({ _id: 0, OTP: 1 });
     return data;
 };
 
@@ -174,7 +165,7 @@ userSchema.statics.verifyOTP = async function (OTP) {
     return !exist ? false : true;
 };
 
-userSchema.statics.updateTuition = async function (StudentID, balance, amount) {
+userSchema.statics.updateTuition = async function (SenderID, ReceiverID, balance, amount) {
     if (!balance || !amount) {
         throw Error('All fill must be filled');
     }
@@ -182,13 +173,13 @@ userSchema.statics.updateTuition = async function (StudentID, balance, amount) {
     //update new balance for user
     const newBalance = balance - amount;
 
-    //update tuition and balance for user
-    await this.findOneAndUpdate(
-        { StudentID },
-        { $set: { balance: newBalance, amount: 0 } }
-    );
+    //update balance for sender
+    await this.findOneAndUpdate({ StudentID: SenderID }, { $set: { balance: newBalance } });
+
+    //update tuition for receiver
+    await this.findOneAndUpdate({ StudentID: ReceiverID }, { $set: { amount: 0 } });
     //return new tuition and new balance for user
-    const data = await this.findOne({ StudentID });
+    const data = await this.findOne({ StudentID: ReceiverID });
     return data;
 };
 

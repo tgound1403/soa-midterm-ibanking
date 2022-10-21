@@ -57,11 +57,11 @@ export const TransactionForm = () => {
         const isOTP = await verifyOTP(OTPRef.current.value);
         if (isOTP) {
             setIsCorrectOTP(true);
-            const { amount, balance } = await updateTuition(studentID, studentBalance, tuitionRequired);
+            const json = await updateTuition(StudentID, balance, tuitionRequired);
             setIsShowModal(true);
             await postHistories(studentName, studentID, tuitionRequired, tuitionContent);
-            setTuitionRequired(amount);
-            setStudentBalance(balance);
+            setTuitionRequired(json.amount);
+            setStudentBalance(json.balance);
             await sendEmail(`Congrats ${additionalName} you just have done your tuition successfully`);
         } else {
             setIsCorrectOTP(false);
@@ -75,10 +75,9 @@ export const TransactionForm = () => {
 
     //fetch API to get user information
     const fetchUser = async () => {
-        const { additionalName, amount, balance, error, content } = await getUser(studentID);
+        const { additionalName, amount, error, content } = await getUser(studentID);
         setStudentName(additionalName || error);
         setTuitionRequired(amount);
-        setStudentBalance(balance);
         setTuitionContent(content);
         setdAmount(amount);
     };
@@ -86,8 +85,8 @@ export const TransactionForm = () => {
 
     //compare if balance is less tuition required
     useEffect(() => {
-        studentBalance < tuitionRequired ? setError(true) : setError(false);
-    }, [studentName, studentBalance, tuitionRequired]);
+        balance < tuitionRequired ? setError(true) : setError(false);
+    }, [studentName, balance, tuitionRequired]);
 
     return (
         <>
