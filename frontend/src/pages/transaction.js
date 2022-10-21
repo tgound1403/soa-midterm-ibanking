@@ -32,7 +32,7 @@ export const TransactionForm = () => {
     const [error, setError] = useState(false);
     const [isCorrectOTP, setIsCorrectOTP] = useState(false);
     const [showInputOTP, setShowInputOTP] = useState(false);
-    const [isShowModal, setIsShowModal] = useState(true);
+    const [isShowModal, setIsShowModal] = useState(false);
     const [dOTP, setOTP] = useState('');
     const [damount, setdAmount] = useState();
     const [tuitionContent, setTuitionContent] = useState(content);
