@@ -5,8 +5,8 @@
 
 ### 1. How to run a program?
 - At the folder containing the source code, open two terminals for frontend and backend.
-- On first terminal, run command "cd backend && npm run server"
-- On second terminal, run command "cd frontend && npm start"
+- On first terminal, run command "cd backend && npm install" after that "npm run server"
+- On second terminal, run command "cd frontend && npm install" after that "npm start"
 
 ### 2. How to use our website?
 - Use one of these account to login and start using:
