@@ -90,20 +90,24 @@ export const HistoryPage = () => {
                                         <p className='md:w-1/3 font-bold text-xl'>Student: {item.receiverID}</p>
                                     </div>
                                     <p className=' font-bold text-xl'>Description: {item.content}</p>
-                                    <p className='inline-block font-bold text-xl '>
-                                        {checkSender(item.senderID) ? 'Balance:' : 'Amount:'}
-                                    </p>
-                                    <p
-                                        className={
-                                            checkSender(item.senderID)
-                                                ? 'font-bold inline-block text-xl text-green-600'
-                                                : 'font-bold inline-block text-xl text-red-600'
-                                        }
-                                    >
-                                        {checkSender(item.senderID)
-                                            ? '-' + formatter.format(item.amount)
-                                            : formatter.format(item.amount)}
-                                    </p>
+                                    <div className='flex flex-wrap'>
+                                        <div>
+                                            <p className='inline-block font-bold text-xl '>
+                                                {checkSender(item.senderID) ? 'Balance:' : 'Amount:'}
+                                            </p>
+                                            <p
+                                                className={
+                                                    checkSender(item.senderID)
+                                                        ? 'font-bold inline-block text-xl text-green-600'
+                                                        : 'font-bold inline-block text-xl text-red-600'
+                                                }
+                                            >
+                                                {checkSender(item.senderID)
+                                                    ? '-' + formatter.format(item.amount)
+                                                    : formatter.format(item.amount)}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             );
                         })

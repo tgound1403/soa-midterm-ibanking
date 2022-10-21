@@ -184,27 +184,29 @@ export const TransactionForm = () => {
                             />
                         </div>
                     </div>
-                    <div className='px-2'>
-                        <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mt-1">
-                            Tuition required (VND)
-                        </label>
-                        <input
-                            disabled
-                            type='text'
-                            className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight '
-                            value={formatCurrency(tuitionRequired)}
-                        />
-                    </div>
-                    <div className='px-2'>
-                        <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mt-1">
-                            Content
-                        </label>
-                        <input
-                            disabled
-                            type='text'
-                            className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight '
-                            value={tuitionContent}
-                        />
+                    <div className='flex flex-wrap'>
+                        <div className='w-full md:w-1/2 px-2 md:mb-0'>
+                            <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mt-1">
+                                Tuition required (VND)
+                            </label>
+                            <input
+                                disabled
+                                type='text'
+                                className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight '
+                                value={formatCurrency(tuitionRequired)}
+                            />
+                        </div>
+                        <div className='w-full md:w-1/2 px-2 md:mb-0'>
+                            <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mt-1">
+                                Description
+                            </label>
+                            <input
+                                disabled
+                                type='text'
+                                className='shadow disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none appearance-none placeholder:text-gray-300 border rounded w-full py-2 px-3 text-gray-700 leading-tight '
+                                value={tuitionContent}
+                            />
+                        </div>
                     </div>
                     <br />
                     <div className='flex mb-1'>
