@@ -3,11 +3,11 @@
 //so in order to change them we must replace these useState with something else
 //so that dispatch can keep in sync with our database without using useState hook
 export const useUpdateTuition = () => {
-    const updateTuition = async (StudentID, balance, amount) => {
+    const updateTuition = async (SenderID, ReceiverID, balance, amount) => {
         const response = await fetch('/api/user/updateTuition', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ StudentID, balance, amount }),
+            body: JSON.stringify({ SenderID, ReceiverID, balance, amount }),
         });
         const json = await response.json();
 

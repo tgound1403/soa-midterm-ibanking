@@ -57,12 +57,13 @@ export const TransactionForm = () => {
         const isOTP = await verifyOTP(OTPRef.current.value);
         if (isOTP) {
             setIsCorrectOTP(true);
-            const json = await updateTuition(StudentID, balance, tuitionRequired);
-            setIsShowModal(true);
+            //the first parameter is SenderID and the second is ReceiverID
+            const json = await updateTuition(StudentID, studentID, balance, tuitionRequired);
             await postHistories(studentName, studentID, tuitionRequired, tuitionContent);
-            setTuitionRequired(json.amount);
-            setStudentBalance(json.balance);
             await sendEmail(`Congrats ${additionalName} you just have done your tuition successfully`);
+            setIsShowModal(true);
+            setTuitionRequired(json.Receiver.amount);
+            setStudentBalance(json.Sender.balance);
         } else {
             setIsCorrectOTP(false);
         }

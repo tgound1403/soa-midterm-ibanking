@@ -178,9 +178,11 @@ userSchema.statics.updateTuition = async function (SenderID, ReceiverID, balance
 
     //update tuition for receiver
     await this.findOneAndUpdate({ StudentID: ReceiverID }, { $set: { amount: 0 } });
+
     //return new tuition and new balance for user
     const data = await this.findOne({ StudentID: ReceiverID });
-    return data;
+    const newData = await this.findOne({ StudentID: SenderID });
+    return { Sender: newData, Receiver: data };
 };
 
 module.exports = mongoose.model('User', userSchema);
