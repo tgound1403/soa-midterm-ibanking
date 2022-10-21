@@ -185,7 +185,7 @@ export const TransactionForm = () => {
                         </div>
                     </div>
                     <div className='flex flex-wrap'>
-                        <div className='w-full md:w-1/2 px-2 md:mb-0'>
+                        <div className='w-full md:w-1/3 px-2 md:mb-0'>
                             <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mt-1">
                                 Tuition required (VND)
                             </label>
@@ -196,7 +196,7 @@ export const TransactionForm = () => {
                                 value={formatCurrency(tuitionRequired)}
                             />
                         </div>
-                        <div className='w-full md:w-1/2 px-2 md:mb-0'>
+                        <div className='w-full md:w-2/3 px-2 md:mb-0'>
                             <label className="italic after:content-['*'] after:ml-0.5 after:text-red-500 block text-gray-700 text-md  mt-1">
                                 Description
                             </label>
